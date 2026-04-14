@@ -36,6 +36,7 @@ When producing written work on my behalf, match this voice. Do not default to fo
 Five active Claude.ai Projects: Test Prep, Cookbook, Prompt Engineering, Systems Project, Career.
 
 Skills live at: ~/.claude/skills/
+Canonical skill repo (GitHub-backed): ~/Desktop/AI/claude-skills/ — git@github.com:jacobgreenwald21/claude-skills.git
 Cowork context files at: ~/Desktop/AI/CLAUDE COWORK/CONTEXT/
 Claude API course at: ~/Desktop/AI/Claude-Api-Course
 
@@ -44,7 +45,7 @@ Claude API course at: ~/Desktop/AI/Claude-Api-Course
 - critical/ — CRITICAL framework prompt builder
 - skill-builder/ — builds and tunes new skills
 - busn4400/ — router for 4 BUSN 4400 deliverable types
-- handoff/ — generates context + handoff markdown files at end of sessions
+- handoff/ — generates a single handoff markdown file at end of sessions; also updates CLAUDE.md with session changes
 - code-review/ — structured code review with severity tiers and debug handoff
 - code-debug/ — five-step debug workflow: reproduce, isolate, hypothesize, fix, verify
 - commander: Session auditor. Run with "run Commander." Audits skills, logs misfires, updates MEMORY.md, backs up skills directory.
@@ -59,10 +60,9 @@ Claude API course at: ~/Desktop/AI/Claude-Api-Course
 ## Handoff File Output
 
 When "generate handoff" is triggered:
-- Chat version: present two downloadable markdown files in the chat
-- Claude Code version: write files directly to ~/Desktop/AI/scratch/markdown-handoffs/
+- Single file: [project-name]-handoff.md written to ~/Desktop/AI/scratch/markdown-handoffs/
 - Archive older versions to ~/Desktop/AI/scratch/markdown-handoffs/archive/ before overwriting
-- Two files always: [project-name]-context.md and [project-name]-handoff.md
+- Also updates CLAUDE.md with anything that changed this session (new skills, decisions, state)
 - Skill files: ~/.claude/skills/handoff/chat-SKILL.md and ~/.claude/skills/handoff/claude-code-SKILL.md
 
 ## Key Frameworks
