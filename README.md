@@ -15,7 +15,8 @@ Skills that manage, evaluate, or build other skills.
 | myth-busters | "myth-busters", "test the skill", "benchmark [skill name]", "run myth-busters on [skill]" | Runs an A/B evaluation of a specific skill — same prompt with and without the skill, graded against assertions, with a pass rate comparison. |
 | skill-builder | "build a new skill", "create a skill", "I want a skill that", "add a skill for", "new skill for", "skill that does" | Interviews on intent, drafts a new SKILL.md, runs test cases, tunes the trigger, and iterates until the skill works correctly. |
 | jarvis | "jarvis", "I'm stuck", "what's next", "what should I work on", "next move" | Surfaces 3 specific short-term ideas and 1 directional long-term idea based on session and memory context. |
-| handoff | *(no SKILL.md — has chat-SKILL.md and claude-code-SKILL.md)* | Generates context and handoff markdown files at the end of a session. |
+| handoff (chat) | "generate handoff" *(chat sessions only)* | Generates two handoff markdown files — a context file and a dev instructions file — presented as downloadable outputs at session end. |
+| handoff (claude-code) | "generate handoff" *(Claude Code sessions only)* | Reads project state from the filesystem and git history, then writes both handoff files directly to `~/Desktop/AI/scratch/markdown-handoffs/`. |
 
 ---
 
@@ -38,7 +39,7 @@ Skills for producing or improving written content.
 |---|---|---|
 | busn4400 | "BUSN 4400", "busn4400", "class blog", "reaction post", "weekly reaction", "write/draft a slack/blog post or comment", "class discussion post", "peer comment for class" | Routes BUSN 4400 deliverable requests to the correct sub-process for all four recurring deliverable types. |
 | avoid-ai-writing | "remove AI-isms", "clean up AI writing", "edit writing for AI patterns", "audit writing for AI tells", "make this sound less like AI" | Audits and rewrites content to remove AI writing patterns, with an optional detect-only mode that flags without rewriting. |
-| resume-tailoring | *(no SKILL.md — multi-file skill package)* | Tailors resume content to specific job postings. |
+| resume-tailoring | *(no SKILL.md — entry point via README; multi-file skill package)* | AI-powered resume generation that researches roles, surfaces undocumented experiences, and produces tailored resumes from your existing resume library. |
 
 ---
 
@@ -75,4 +76,5 @@ Utility skills and frameworks.
 | Skill | Trigger | Purpose |
 |---|---|---|
 | critical | "help me build a prompt", "design a prompt for", "let's use CRITICAL", "build me a prompt", "prompt for" | Runs the full CRITICAL framework elicitation process to build a structured, high-quality prompt for any task. |
-| tapestry-skills | *(no SKILL.md — collection with subdirectories)* | Extended skill collection; see subdirectories for individual skill files. |
+| tapestry-skills | *(no top-level SKILL.md — collection with subdirectories)* | Extended skill collection; see subdirectories for individual skill files. |
+| tapestry-skills / article-extractor | "extract [URL]", "download this article", "save this blog post as text", "extract the content from [URL]" | Extracts clean article content from URLs — removes ads, navigation, and clutter — and saves as a readable text file. |
