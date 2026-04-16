@@ -53,15 +53,38 @@ For each skill, check:
 Skills to audit (current ecosystem):
 
 ```
-~/.claude/skills/critical/SKILL.md
-~/.claude/skills/skill-builder/SKILL.md
+~/.claude/skills/avoid-ai-writing/SKILL.md
 ~/.claude/skills/busn4400/SKILL.md
 ~/.claude/skills/busn4400/references/blog-comment.md
+~/.claude/skills/busn4400/references/blog-post.md
 ~/.claude/skills/busn4400/references/slack-comment.md
 ~/.claude/skills/busn4400/references/slack-post.md
+~/.claude/skills/checkpoint/SKILL.md
+~/.claude/skills/code-debug/SKILL.md
+~/.claude/skills/code-review/SKILL.md
+~/.claude/skills/commander/SKILL.md
+~/.claude/skills/critical/SKILL.md
+~/.claude/skills/docx/SKILL.md
 ~/.claude/skills/handoff/chat-SKILL.md
 ~/.claude/skills/handoff/claude-code-SKILL.md
-~/.claude/skills/commander/SKILL.md
+~/.claude/skills/jarvis/SKILL.md
+~/.claude/skills/myth-busters/SKILL.md
+~/.claude/skills/optimus-prime/SKILL.md
+~/.claude/skills/pdf/SKILL.md
+~/.claude/skills/pptx/SKILL.md
+~/.claude/skills/resume-tailoring/skills/resume-tailoring/SKILL.md
+~/.claude/skills/roundtable/SKILL.md
+~/.claude/skills/skill-builder/SKILL.md
+~/.claude/skills/tapestry-skills/article-extractor/SKILL.md
+~/.claude/skills/tapestry-skills/learn-this/SKILL.md
+~/.claude/skills/tapestry-skills/scrum-sage/SKILL.md
+~/.claude/skills/tapestry-skills/session-log/SKILL.md
+~/.claude/skills/tapestry-skills/ship-learn-next/SKILL.md
+~/.claude/skills/tapestry-skills/unblock-action/SKILL.md
+~/.claude/skills/tapestry-skills/youtube-transcript/SKILL.md
+~/.claude/skills/verdict/SKILL.md
+~/.claude/skills/xlsx/SKILL.md
+~/.claude/skills/yoda/SKILL.md
 ```
 
 Output a clean audit report:
@@ -161,9 +184,17 @@ When this trigger fires, run the following sequence in order. Complete each step
 
 2. **Commander audit** — run the full Commander sequence: misfire capture → skill audit → MEMORY.md update → backup.
 
-3. **jarvis** — read session context and memory files, then surface 3 short-term + 1 long-term idea based on everything that just happened.
+3. **GitHub sync** — copy any updated SKILL.md files and CLAUDE.md to `~/Desktop/AI/claude-skills/`, then stage all changes:
+   ```bash
+   git -C ~/Desktop/AI/claude-skills add .
+   ```
+   Prompt Jacob: "Ready to push updates to GitHub. Confirm?"
+   - On confirmation: `git -C ~/Desktop/AI/claude-skills commit -m "session sync [DATE]" && git -C ~/Desktop/AI/claude-skills push origin main`
+   - If Jacob declines: skip the commit/push and proceed to jarvis.
 
-Do not skip or reorder steps. Each step feeds context into the next — roundtable surfaces what was built, Commander logs it, jarvis uses that state to recommend what comes next.
+4. **jarvis** — read session context and memory files, then surface 3 short-term + 1 long-term idea based on everything that just happened.
+
+Do not skip or reorder steps. Each step feeds context into the next — roundtable surfaces what was built, Commander logs it, GitHub sync keeps the repo current, jarvis uses that state to recommend what comes next.
 
 ---
 

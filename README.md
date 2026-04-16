@@ -10,7 +10,7 @@ Skills that manage, evaluate, or build other skills.
 
 | Skill | Trigger | Purpose |
 |---|---|---|
-| commander | "run Commander" | Session auditor that captures misfires, audits all installed skills, updates MEMORY.md, and creates a date-stamped backup of the skills directory. |
+| commander | "run Commander" | Session auditor — captures misfires, audits full skill portfolio, updates MEMORY.md, backs up skills directory, and runs end-of-session chain. |
 | optimus-prime | "optimus-prime", "optimus", "autobots roll out", "cross-skill review", "skill system audit" | Holistic cross-skill analysis — finds trigger overlaps, underused skills, and systemic gaps across the full portfolio. |
 | myth-busters | "myth-busters", "test the skill", "benchmark [skill name]", "run myth-busters on [skill]" | Runs an A/B evaluation of a specific skill — transcript-aware scoping, binary assertion grading, and a pass rate comparison. |
 | skill-builder | "build a new skill", "create a skill", "I want a skill that", "add a skill for", "new skill for", "skill that does" | Interviews on intent, drafts a new SKILL.md, archives before every write, runs test cases, tunes the trigger, and iterates until the skill works correctly. |
