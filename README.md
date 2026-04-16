@@ -12,8 +12,8 @@ Skills that manage, evaluate, or build other skills.
 |---|---|---|
 | commander | "run Commander" | Session auditor that captures misfires, audits all installed skills, updates MEMORY.md, and creates a date-stamped backup of the skills directory. |
 | optimus-prime | "optimus-prime", "optimus", "autobots roll out", "cross-skill review", "skill system audit" | Holistic cross-skill analysis — finds trigger overlaps, underused skills, and systemic gaps across the full portfolio. |
-| myth-busters | "myth-busters", "test the skill", "benchmark [skill name]", "run myth-busters on [skill]" | Runs an A/B evaluation of a specific skill — same prompt with and without the skill, graded against assertions, with a pass rate comparison. |
-| skill-builder | "build a new skill", "create a skill", "I want a skill that", "add a skill for", "new skill for", "skill that does" | Interviews on intent, drafts a new SKILL.md, runs test cases, tunes the trigger, and iterates until the skill works correctly. |
+| myth-busters | "myth-busters", "test the skill", "benchmark [skill name]", "run myth-busters on [skill]" | Runs an A/B evaluation of a specific skill — transcript-aware scoping, binary assertion grading, and a pass rate comparison. |
+| skill-builder | "build a new skill", "create a skill", "I want a skill that", "add a skill for", "new skill for", "skill that does" | Interviews on intent, drafts a new SKILL.md, archives before every write, runs test cases, tunes the trigger, and iterates until the skill works correctly. |
 | jarvis | "jarvis", "I'm stuck", "what's next", "what should I work on", "next move" | Surfaces 3 specific short-term ideas and 1 directional long-term idea based on session and memory context. |
 | handoff (chat) | "generate handoff" *(chat sessions only)* | Generates two handoff markdown files — a context file and a dev instructions file — presented as downloadable outputs at session end. |
 | handoff (claude-code) | "generate handoff" *(Claude Code sessions only)* | Reads project state from the filesystem and git history, then writes both handoff files directly to `~/Desktop/AI/scratch/markdown-handoffs/`. |
