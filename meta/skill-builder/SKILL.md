@@ -40,6 +40,7 @@ Review the trigger description critically:
 - Is it specific enough to not fire accidentally?
 - Is it broad enough to catch natural variations?
 - Does it use phrases Jacob would actually say?
+
 Revise if needed. State why each trigger phrase was chosen.
 
 ### Phase 4 — Test Cases
@@ -51,14 +52,20 @@ Generate 3 test prompts:
 For each, predict whether the skill fires and why.
 
 ### Phase 5 — Install and Verify
-1. Write the file to ~/.claude/skills/<skill-name>/SKILL.md
-2. Restart Claude Code
-3. Run the first test prompt
-4. Report whether the skill fired correctly
-5. If not, diagnose and revise trigger description
+1. Before writing, check if `~/.claude/skills/<skill-name>/SKILL.md` already exists.
+   If it does, determine the next version number by checking `~/.claude/skills/<skill-name>/archive/` for existing versioned files.
+   Create `~/.claude/skills/<skill-name>/archive/` if it does not exist.
+   Copy the current SKILL.md to `~/.claude/skills/<skill-name>/archive/SKILL-v[N].md` before overwriting.
+2. Write the new file to `~/.claude/skills/<skill-name>/SKILL.md`
+3. Restart Claude Code
+4. Run the first test prompt
+5. Report whether the skill fired correctly
+6. If not, diagnose and revise trigger description
 
 ### Phase 6 — Iterate
 If output quality is off after firing, identify which phase of the skill produced the problem and rewrite that section only. Never rewrite the whole skill for a small issue.
+
+Before overwriting during iteration, archive the current version following the same archive step in Phase 5.
 
 ## Output Format
 A complete, installable SKILL.md file written to the correct path. Plus a test report showing which test cases passed.
@@ -69,5 +76,7 @@ A complete, installable SKILL.md file written to the correct path. Plus a test r
 - Never skip Phase 4 test cases — a skill nobody triggers is dead weight
 - Never rewrite a working section when only one phase is broken
 - Always confirm the install path before writing the file
-- After writing any new SKILL.md, always add a one-line entry for the new skill to the skill portfolio list in ~/.claude/CLAUDE.md before closing out
-- After adding the skill to CLAUDE.md, always prompt: "Skill built and added to CLAUDE.md. Want to run myth-busters on this now to validate against baseline?"
+- Before writing any SKILL.md, check for an existing file and archive it first — never overwrite without archiving
+- After writing any new SKILL.md, always add a one-line entry for the new skill to the skill portfolio list in `~/.claude/CLAUDE.md` before closing out
+- After adding to CLAUDE.md, copy the new SKILL.md to the correct category folder in `~/Desktop/AI/claude-skills/`. Then identify the correct category (meta, code, writing, session, document, or tools) and add a new row to that category's table in `~/Desktop/AI/claude-skills/README.md` with three columns: skill name, trigger phrase(s), and a one-line purpose pulled from the new SKILL.md. Then run: `git -C ~/Desktop/AI/claude-skills add . && git -C ~/Desktop/AI/claude-skills commit -m "add [skill-name] skill"` — then prompt: "Ready to push to GitHub. Confirm?"
+- After the GitHub sync step, prompt: "Skill built and synced. Want to run myth-busters on this now to validate against baseline? Run in this session so myth-busters has access to the full transcript above."

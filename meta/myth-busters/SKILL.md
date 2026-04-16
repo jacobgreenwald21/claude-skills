@@ -19,10 +19,26 @@ If the target skill or test prompt is missing, ask for both before proceeding. D
 ## Phase 2 — Load and Analyze the Target Skill
 Read `~/.claude/skills/[target-skill]/SKILL.md`.
 
-Auto-derive assertions from:
+Check for transcript context:
+- If a full skill interaction exists above in this chat session → use it. Derive assertions across all phases and grade against the complete transcript. Skip the scope question and proceed directly to assertion derivation.
+- If no transcript exists → ask the scope question before deriving assertions:
+
+  > "Before I derive assertions, I need to know what we're testing. Three options:
+  >
+  > A) First response only — I grade only what Claude returns on the very first trigger. Good for a quick sanity check that the skill fires and Phase 1 runs correctly. Use this when you just want to confirm the skill is working before a full run.
+  >
+  > B) Specific phase — I grade one phase in isolation. Good when you know a particular phase is broken. Tell me which phase number.
+  >
+  > C) Full transcript — I grade the entire interaction end to end. Best for a real validation baseline. Paste the transcript or run the skill in this session first.
+  >
+  > If you're not sure, start with A. It's the fastest way to catch obvious failures before committing to a full run."
+
+Once scope is confirmed, auto-derive assertions from:
 - The **Purpose** section: what the skill is supposed to produce
 - The **Guardrails** section: what the skill must never do
 - The **Output format** section: structural requirements (format, sections, length constraints)
+
+Scope assertions only to what is evaluable within the declared scope. Do not derive assertions for phases outside the scope.
 
 Each assertion must be binary — pass or fail. Write them as explicit yes/no checks:
 - "Output contains a clear recommendation" (not "output is good")
