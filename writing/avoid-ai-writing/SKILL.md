@@ -1,7 +1,7 @@
 ---
 name: avoid-ai-writing
 description: Audit and rewrite content to remove AI writing patterns ("AI-isms"). Use this skill when asked to "remove AI-isms," "clean up AI writing," "edit writing for AI patterns," "audit writing for AI tells," or "make this sound less like AI." Supports a detection-only mode that flags patterns without rewriting.
-version: 3.5.0
+version: 3.6.0
 ---
 
 # Avoid AI Writing — Audit & Rewrite
@@ -367,7 +367,7 @@ Pass an optional context hint to adjust rule strictness. If no context is specif
 ### Profile definitions
 
 **`linkedin`** — Short-form social. Punchy fragments, visual formatting matter.
-**`blog`** — Default. Standard long-form prose. All rules apply at full strength.
+**`blog`** — Default. Standard long-form prose. All rules apply at full strength. For personal or reflective pieces, preserve the writer's casual register and natural rhythm — only fix specific AI-isms, don't push toward punchy or declarative. The goal is to sound more like the writer, not more like a polished essay.
 **`technical-blog`** — Long-form with code, architecture, APIs. Technical terms get a pass.
 **`investor-email`** — High-trust audience. Tighten everything; promotional language is the biggest risk.
 **`docs`** — Documentation, READMEs, guides. Clarity over voice.
@@ -409,19 +409,19 @@ When no context is specified, infer from content: short + hashtags = `linkedin`,
 
 ### Rewrite mode (default)
 
-Return your response in four sections:
+Return your response in three steps, pausing for approval between steps 1 and 2.
 
-**1. Issues found**
-A bulleted list of every AI-ism identified, with the offending text quoted.
+**Step 1 — Audit + proposal**
+- A bulleted list of every AI-ism identified, with the offending text quoted
+- A brief proposal: suggested word count, structure (paragraphs vs. sections, any headers), and a 3–5 bullet outline of the rewrite
+- Stop here. Wait for the user to approve or redirect before writing anything.
 
-**2. Rewritten version**
+**Step 2 — Rewrite** *(after approval)*
 The full rewritten content. Preserve the original structure, intent, and all specific technical details. Only change what the guidelines require.
 
-**3. What changed**
-A brief summary of the major edits made. Not every word, just the meaningful changes.
-
-**4. Second-pass audit**
-Re-read the rewritten version from section 2. Identify any remaining AI tells that survived the first pass: recycled transitions, lingering inflation, copula avoidance, filler phrases, or anything else from the categories above. Fix them, return the corrected text inline, and note what changed in this pass. If the rewrite is clean, say so.
+**Step 3 — What changed + second-pass audit**
+- Brief summary of major edits: not every word, just the meaningful changes
+- Re-read the rewrite. Flag any AI tells that survived the first pass. Fix them inline and note what changed. If the rewrite is clean, say so.
 
 ### Detect mode
 
