@@ -1,5 +1,5 @@
 ---
-trigger: "help me build a prompt, design a prompt for, I need a meta prompt, let's use CRITICAL, build me a prompt, make me a prompt, prompt for"
+trigger: "Use this skill when the user wants to build or design a structured prompt using the CRITICAL framework. Trigger phrases include: 'help me build a prompt', 'design a prompt for', 'I need a meta prompt', 'let's use CRITICAL', 'build me a prompt', 'make me a prompt', 'CRITICAL framework', 'run CRITICAL'. Do NOT trigger on generic phrasing like 'prompt for help' or 'prompt for something' without clear intent to build a structured AI prompt."
 ---
 
 # CRITICAL Framework Skill

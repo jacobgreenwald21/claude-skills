@@ -1,5 +1,5 @@
 ---
-trigger: "Use this skill when the user asks for a status check, session checkpoint, or wants to know where things stand mid-session. Trigger phrases include: 'status check', 'checkpoint', 'where are we', 'what's left', 'quick status', 'catch me up', 'what have we done', 'what's next'. Do NOT trigger for status checks in other contexts (e.g., git status, server status, API status)."
+trigger: "Use this skill when the user asks for a status check, session checkpoint, or wants to know where things stand mid-session. Trigger phrases include: 'status check', 'checkpoint', 'where are we', 'what's left', 'quick status', 'catch me up', 'what have we done'. Do NOT trigger on 'what's next' alone — that routes to jarvis. Do NOT trigger for status checks in other contexts (e.g., git status, server status, API status)."
 skill: checkpoint
 ---
 

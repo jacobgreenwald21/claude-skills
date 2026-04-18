@@ -77,11 +77,10 @@ Skills to audit (current ecosystem):
 ~/.claude/skills/skill-builder/SKILL.md
 ~/.claude/skills/tapestry-skills/article-extractor/SKILL.md
 ~/.claude/skills/tapestry-skills/learn-this/SKILL.md
-~/.claude/skills/tapestry-skills/scrum-sage/SKILL.md
-~/.claude/skills/tapestry-skills/session-log/SKILL.md
 ~/.claude/skills/tapestry-skills/ship-learn-next/SKILL.md
 ~/.claude/skills/tapestry-skills/unblock-action/SKILL.md
 ~/.claude/skills/tapestry-skills/youtube-transcript/SKILL.md
+~/.claude/skills/skill-namer/SKILL.md
 ~/.claude/skills/verdict/SKILL.md
 ~/.claude/skills/xlsx/SKILL.md
 ~/.claude/skills/yoda/SKILL.md
@@ -105,34 +104,81 @@ After the report, ask:
 
 Wait for response before proceeding.
 
+After applying any fixes, always sync the updated SKILL.md files to the GitHub repo using the path map below before moving to Step 3.
+
+**GitHub repo path map** (`~/Desktop/AI/claude-skills/`):
+
+| Skill | Repo path |
+|-------|-----------|
+| avoid-ai-writing | writing/avoid-ai-writing/ |
+| busn4400 | writing/busn4400/ |
+| resume-tailoring | writing/resume-tailoring/ |
+| code-debug | code/code-debug/ |
+| code-review | code/code-review/ |
+| docx | document/docx/ |
+| pdf | document/pdf/ |
+| pptx | document/pptx/ |
+| xlsx | document/xlsx/ |
+| commander | meta/commander/ |
+| jarvis | meta/jarvis/ |
+| myth-busters | meta/myth-busters/ |
+| optimus-prime | meta/optimus-prime/ |
+| skill-builder | meta/skill-builder/ |
+| skill-namer | meta/skill-namer/ |
+| handoff | meta/handoff/ |
+| checkpoint | session/checkpoint/ |
+| roundtable | session/roundtable/ |
+| verdict | session/verdict/ |
+| yoda | session/yoda/ |
+| critical | tools/critical/ |
+| tapestry-skills/article-extractor | tools/tapestry-skills/article-extractor/ |
+
+Sync command: `cp ~/.claude/skills/[skill]/SKILL.md ~/Desktop/AI/claude-skills/[repo-path]/SKILL.md`
+Then stage and prompt to push: `git -C ~/Desktop/AI/claude-skills add . && git -C ~/Desktop/AI/claude-skills commit -m "commander sync [DATE]"` — confirm before pushing.
+
 ---
 
-## Step 3 — Update MEMORY.md
+## Step 3 — Update Structured Memory
 
-File location: `~/.claude/MEMORY.md`
+Memory directory: `~/.claude/projects/-Users-jacob/memory/`
 
-If file does not exist, create it with this header:
+Do two things in order:
+
+**3a — Update project_skill_ecosystem.md**
+Read the current file. Make targeted updates only:
+- Add any new skills installed this session to the test status list
+- Mark any open issues resolved if they were fixed
+- Update the "open issues" list with anything newly flagged in Step 2
+Never rewrite the file — surgical edits only.
+
+**3b — Append to session-log.md**
+File location: `~/.claude/projects/-Users-jacob/memory/session-log.md`
+
+If the file does not exist, create it with this frontmatter:
 
 ```markdown
-# Claude Skill Ecosystem — Memory Log
-Running log of session learnings. Appended each session, never overwritten.
+---
+name: Session log
+description: Chronological log of sessions — what was built, misfires, audit flags, decisions. Append-only.
+type: project
 ---
 ```
 
-Append a new entry for this session:
+Append a new entry:
 
 ```markdown
 ## Session — [DATE]
-**Project:** [what Jacob was working on this session]
+**Project:** [what Jacob was working on]
 **Built or changed:** [list of changes made]
-**Skill misfires:** [list from Step 1, or "none"]
-**Audit flags:** [list from Step 2, or "none"]
-**Decisions made:** [key decisions that future Claude should know about]
+**Skill misfires:** [from Step 1, or "none"]
+**Audit flags:** [from Step 2, or "none"]
+**Decisions made:** [key decisions future Claude should know]
 **Friction points:** [anything that slowed the session down]
 ---
 ```
 
-Pull session context from the conversation history. If something is unclear, ask Jacob to confirm before writing it.
+Pull context from the conversation. Ask Jacob to confirm anything unclear before writing.
+Also update MEMORY.md in `~/.claude/projects/-Users-jacob/memory/` to include a pointer to session-log.md if not already present.
 
 ---
 
@@ -177,6 +223,8 @@ Backup saved: ✓ skills-[DATE]
 ## End-of-Session Chain
 
 Triggered by: "wrap up", "end session", "close out", "wrap it up", or similar end-of-session phrases.
+
+Note: "roundtable" alone triggers only the roundtable skill — not this chain. The full end-of-session chain only fires on "wrap up" / "end session" / "close out" variants. Do not fire this chain on "roundtable" by itself.
 
 When this trigger fires, run the following sequence in order. Complete each step fully before starting the next.
 

@@ -1,3 +1,7 @@
+---
+trigger: "Use this skill when the user says 'generate handoff' in a Claude.ai chat session (not Claude Code). Trigger phrases: 'generate handoff', 'make a handoff', 'create handoff'. Do NOT trigger in Claude Code sessions — use claude-code-SKILL.md there. Do NOT trigger for mid-session status checks (use checkpoint) or end-of-session recaps (use roundtable)."
+---
+
 # Handoff Skill — Chat Version
 *For use in Claude.ai chat sessions (not Claude Code)*
 
@@ -10,12 +14,11 @@ Activate when the user says **"generate handoff"** in any chat session.
 
 ## What This Skill Does
 
-Generates two clean markdown files at the end of a chat session so the next session can pick up exactly where this one left off — with no re-explaining, no lost context, and the same working style.
+Generates a single clean markdown file at the end of a chat session so the next session can pick up exactly where this one left off — with no re-explaining, no lost context, and the same working style.
 
-**Output 1:** `[project-name]-context.md` — high-level project overview readable by anyone  
-**Output 2:** `[project-name]-handoff.md` — technical dev instructions, personal use only
+**Output:** `[project-name]-handoff.md` — technical dev instructions, personal use only
 
-Both files are presented as downloadable outputs via the present_files tool.
+Presented as a downloadable output via the present_files tool.
 
 ---
 
@@ -28,35 +31,19 @@ Use the name as a slug: lowercase, hyphens, no spaces.
 
 ---
 
-## Step 2 — Generate the Context File
+## Step 2 — Update CLAUDE.md
 
-**Filename:** `[project-name]-context.md`
+Read `~/.claude/CLAUDE.md`. Based on the session history, identify anything that changed that affects persistent context:
+- New skills added or removed
+- Stack or tool decisions made
+- Project state changes (milestones completed, features shipped)
+- New file locations or paths that matter long-term
+- Anything that would affect how a future session should behave
 
-**Tone:** Clear, readable, no assumed technical knowledge. Written so anyone could drop it into a chat and ask Claude to summarize or elaborate on it. No jargon unless necessary.
+Make targeted edits only — surgical updates to the relevant lines or sections. Never rewrite CLAUDE.md from scratch.
 
-**Structure:**
-```
-# [Project Name] — Project Context
-*[Month Year]*
-
-## What It Is
-2-3 sentences. What this project is, what it does, who it's for.
-
-## Why It Exists
-The problem it solves or the goal it serves. 1-2 sentences.
-
-## Current State
-What is working right now. Bulleted list, plain language.
-
-## What's Been Done
-Key milestones or phases completed, in plain language.
-
-## What's Next
-What still needs to happen. Plain language, not implementation detail.
-
-## Key Decisions Made
-Any important choices that shaped the project and why.
-```
+Confirm what was changed before proceeding:
+> "Updated CLAUDE.md: [list of specific changes, or 'no changes needed']"
 
 ---
 
@@ -104,14 +91,14 @@ Only include what would cause real problems if forgotten:
 
 ---
 
-## Step 4 — Output the Files
+## Step 4 — Output the File
 
-Write both files and present them using the present_files tool so Jacob can download them directly.
+Write the file and present it using the present_files tool so Jacob can download it directly.
 
-Do not output the file contents inline in the chat. Just present the files.
+Do not output the file contents inline in the chat. Just present the file.
 
 After presenting, say:
-> "Save both to `~/Desktop/AI/scratch/markdown-handoffs/`. If an older version exists, move it to `.../archive/` first."
+> "Save to `~/Desktop/AI/scratch/markdown-handoffs/`. If an older version exists, move it to `.../archive/` first."
 
 ---
 
@@ -119,6 +106,6 @@ After presenting, say:
 
 - Never ask more than one clarifying question
 - Infer as much as possible from the conversation
-- Keep both files concise — a handoff that requires reading is too long
+- Keep the file concise — a handoff that requires reading is too long
 - The handoff file should feel like picking up mid-sentence, not starting over
 - Do not include information that isn't relevant to continuing the work
