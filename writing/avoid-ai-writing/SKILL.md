@@ -1,15 +1,7 @@
 ---
 name: avoid-ai-writing
 description: Audit and rewrite content to remove AI writing patterns ("AI-isms"). Use this skill when asked to "remove AI-isms," "clean up AI writing," "edit writing for AI patterns," "audit writing for AI tells," or "make this sound less like AI." Supports a detection-only mode that flags patterns without rewriting.
-version: 3.4.0
-license: MIT
-compatibility: Any AI coding assistant that supports agentskills.io SKILL.md format (Claude Code, Cursor, VS Code Copilot, Hermes Agent, OpenHands, etc.) or OpenClaw. No external tools or APIs required.
-metadata:
-  author: Conor Bronsdon
-  tags: writing editing voice quality
-  agentskills_spec: "1.0"
-  openclaw:
-    emoji: "\u270D\uFE0F"
+version: 3.5.0
 ---
 
 # Avoid AI Writing — Audit & Rewrite
@@ -243,12 +235,11 @@ These slot-fill constructions signal that a sentence was generated, not written.
 ### Generic conclusions
 - "The future looks bright," "Only time will tell," "One thing is certain," "As we move forward" — these are filler disguised as conclusions. Cut them. If the piece needs a closing thought, make it specific to the argument.
 
-### Chatbot artifacts
-- "I hope this helps!", "Certainly!", "Absolutely!", "Great question!", "Feel free to reach out," "Let me know if you need anything else" — these are conversational tics from chat interfaces, not writing. Remove entirely.
-- Also watch for: "In this article, we will explore…" or "Let's dive in!" — AI-generated meta-narration. Cut or rewrite with a direct opening.
-
-### "Let's" constructions
-- "Let's explore," "Let's take a look," "Let's break this down," "Let's examine" — AI uses "let's" as a false-collaborative opener to ease into a topic. It's filler that delays the actual point. Just start with the point. Flag any "let's + verb" functioning as a transition rather than a genuine invitation to act.
+### Chatbot artifacts and sycophancy
+- Performative helpfulness: "I hope this helps!", "Certainly!", "Absolutely!", "Feel free to reach out," "Let me know if you need anything else" — remove entirely.
+- Validating the questioner: "Great question!", "Excellent point!", "You're absolutely right!", "That's a really insightful observation" — remove entirely.
+- Meta-narration: "In this article, we will explore…" or "Let's dive in!" — cut or rewrite with a direct opening.
+- "Let's" transitions: "Let's explore," "Let's take a look," "Let's break this down" — filler that delays the point. Just start with the point.
 
 ### Notability name-dropping
 - AI text piles on prestigious citations to manufacture credibility: "cited in The New York Times, BBC, Financial Times, and The Hindu." If a source matters, use it with context: "In a 2024 NYT interview, she argued..." One specific reference beats four name-drops.
@@ -331,10 +322,6 @@ These aren't individual word or phrase problems. They're patterns in how the tex
 - **Missing first-person perspective**: Where appropriate, the writer should have opinions, preferences, and reactions. AI is relentlessly neutral. If the piece is supposed to have a voice, the absence of "I think," "in my experience," or a stated preference is itself an AI tell.
 - **Over-polishing**: Aggressively editing out every irregularity can push human writing toward AI statistical profiles. Natural disfluency, idiosyncratic word choices, and uneven pacing are what keep text out of the "AI-generated" classification. Don't sand away all personality in pursuit of clean prose. This skill should make writing sound more human, not less.
 
-### When to rewrite from scratch vs. patch
-
-If the text has 5+ flagged vocabulary hits across multiple categories, 3+ distinct pattern categories triggered, and uniform sentence/paragraph length, patching individual phrases won't fix it. The structure itself is AI-generated. Advise a full rewrite: state the core point in one sentence, then rebuild from there.
-
 ---
 
 ## Severity tiers
@@ -413,19 +400,7 @@ Rules not listed in the table apply at full strength across all profiles.
 
 **"Skip"** means: don't audit this category for this profile. The rule doesn't apply or isn't worth the edit.
 
-### Auto-detection cues
-
-When no context is specified, infer from these signals:
-
-| Signal | Inferred context |
-|--------|-----------------|
-| Under 300 words + hashtags or mentions | `linkedin` |
-| Code blocks, API references, or technical architecture | `technical-blog` |
-| Salutation ("Hi [name]", "Dear") + investor/fundraising language | `investor-email` |
-| Step-by-step instructions, parameter docs, README structure | `docs` |
-| No strong signals | `blog` (safest default — all rules apply) |
-
-If auto-detection feels wrong, say which profile you're using and why. The user can override.
+When no context is specified, infer from content: short + hashtags = `linkedin`, code blocks = `technical-blog`, salutation + fundraising language = `investor-email`, step-by-step instructions = `docs`, default = `blog`. The user can override.
 
 ---
 
@@ -460,17 +435,3 @@ For each flag, note whether it's a clear problem or a judgment call. Some AI-ass
 
 ---
 
-## Tone calibration
-
-The goal is writing that sounds like a person wrote it. Direct. Specific. The writing should demonstrate confidence, not assert it.
-
-Five principles for human-sounding rewrites:
-1. **Vary sentence length** — mix short with long. Fragments are fine.
-2. **Be concrete** — replace vague claims with numbers, names, dates, or examples.
-3. **Have a voice** — where appropriate, use first person, state preferences, show reactions.
-4. **Cut the neutrality** — humans have opinions. If the piece is supposed to take a position, take it.
-5. **Earn your emphasis** — don't tell the reader something is interesting. Make it interesting.
-
-If the original writing is already strong, say so and make only the necessary cuts. Don't over-edit for the sake of it.
-
-The replacement table provides defaults, not mandates. If a flagged word is clearly the right choice in context, preserve it.
