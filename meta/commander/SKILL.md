@@ -100,7 +100,7 @@ After the report, ask:
 
 Wait for response before proceeding.
 
-After applying any fixes, always sync the updated SKILL.md files to the GitHub repo using the path map below before moving to Step 3.
+After applying any fixes, always sync the updated SKILL.md files to the GitHub repo using the path map below before moving to Step 3. For each skill changed, check if the README entry needs updating — if the skill's trigger, purpose, or behavior changed in a user-visible way, update `~/Desktop/AI/claude-skills/README.md` before committing.
 
 **GitHub repo path map** (`~/Desktop/AI/claude-skills/`):
 
