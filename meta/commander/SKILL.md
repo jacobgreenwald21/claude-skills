@@ -65,6 +65,7 @@ Skills to audit (current ecosystem):
 ~/.claude/skills/commander/SKILL.md
 ~/.claude/skills/critical/SKILL.md
 ~/.claude/skills/docx/SKILL.md
+~/.claude/skills/handoff/SKILL.md
 ~/.claude/skills/handoff/chat-SKILL.md
 ~/.claude/skills/handoff/claude-code-SKILL.md
 ~/.claude/skills/jarvis/SKILL.md
@@ -75,11 +76,6 @@ Skills to audit (current ecosystem):
 ~/.claude/skills/resume-tailoring/skills/resume-tailoring/SKILL.md
 ~/.claude/skills/roundtable/SKILL.md
 ~/.claude/skills/skill-builder/SKILL.md
-~/.claude/skills/tapestry-skills/article-extractor/SKILL.md
-~/.claude/skills/tapestry-skills/learn-this/SKILL.md
-~/.claude/skills/tapestry-skills/ship-learn-next/SKILL.md
-~/.claude/skills/tapestry-skills/unblock-action/SKILL.md
-~/.claude/skills/tapestry-skills/youtube-transcript/SKILL.md
 ~/.claude/skills/skill-namer/SKILL.md
 ~/.claude/skills/verdict/SKILL.md
 ~/.claude/skills/xlsx/SKILL.md
@@ -131,7 +127,6 @@ After applying any fixes, always sync the updated SKILL.md files to the GitHub r
 | verdict | session/verdict/ |
 | yoda | session/yoda/ |
 | critical | tools/critical/ |
-| tapestry-skills/article-extractor | tools/tapestry-skills/article-extractor/ |
 
 Sync command: `cp ~/.claude/skills/[skill]/SKILL.md ~/Desktop/AI/claude-skills/[repo-path]/SKILL.md`
 Then stage and prompt to push: `git -C ~/Desktop/AI/claude-skills add . && git -C ~/Desktop/AI/claude-skills commit -m "commander sync [DATE]"` — confirm before pushing.
@@ -144,14 +139,20 @@ Memory directory: `~/.claude/projects/-Users-jacob/memory/`
 
 Do two things in order:
 
-**3a — Update project_skill_ecosystem.md**
+**3a — Update open-items.md**
+Read `~/.claude/projects/-Users-jacob/memory/open-items.md`. For each item:
+- If it was resolved this session, delete it or mark it ~~resolved~~
+- If new items were flagged this session (via "flag that" / "flag this"), append them with today's date
+- If nothing changed, leave it as-is
+
+**3b — Update project_skill_ecosystem.md**
 Read the current file. Make targeted updates only:
 - Add any new skills installed this session to the test status list
 - Mark any open issues resolved if they were fixed
 - Update the "open issues" list with anything newly flagged in Step 2
 Never rewrite the file — surgical edits only.
 
-**3b — Append to session-log.md**
+**3d — Append to session-log.md**
 File location: `~/.claude/projects/-Users-jacob/memory/session-log.md`
 
 If the file does not exist, create it with this frontmatter:

@@ -67,6 +67,10 @@ When "generate handoff" is triggered:
 - Also updates CLAUDE.md with anything that changed this session (new skills, decisions, state)
 - Skill files: ~/.claude/skills/handoff/chat-SKILL.md and ~/.claude/skills/handoff/claude-code-SKILL.md
 
+## Open Items
+
+When Jacob says "flag that" or "flag this" mid-session, append the item to `~/.claude/projects/-Users-jacob/memory/open-items.md` with today's date. Commander reads and clears resolved items at each session end.
+
 ## Key Frameworks
 
 CRITICAL = Context, Role, Intent, Task, Instructions, Criteria, Audience, Learning — my primary structured prompting tool. Default to it for prompt-building tasks.
