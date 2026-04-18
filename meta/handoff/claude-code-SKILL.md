@@ -10,13 +10,12 @@ Activate when the user says **"generate handoff"** in a Claude Code session.
 
 ## What This Skill Does
 
-Reads the actual project state from the filesystem and git history, then writes two clean markdown files so the next session picks up exactly where this one left off.
+Reads the actual project state from the filesystem and git history, then writes a single clean markdown file so the next session picks up exactly where this one left off.
 
-**Output 1:** `[project-name]-context.md` — high-level project overview readable by anyone  
-**Output 2:** `[project-name]-handoff.md` — technical dev instructions, personal use only
+**Output:** `[project-name]-handoff.md` — technical dev instructions, personal use only
 
-Both files are written directly to `~/Desktop/AI/scratch/markdown-handoffs/`.  
-Any existing files with the same name are moved to `~/Desktop/AI/scratch/markdown-handoffs/archive/` first, renamed with today's date: `[project-name]-context-[YYYY-MM-DD].md`.
+Written directly to `~/Desktop/AI/scratch/markdown-handoffs/`.  
+Any existing file with the same name is moved to `~/Desktop/AI/scratch/markdown-handoffs/archive/` first, renamed with today's date: `[project-name]-handoff-[YYYY-MM-DD].md`.
 
 ---
 
@@ -48,20 +47,14 @@ Use what you find. Do not ask Jacob to describe the state — read it directly.
 
 ---
 
-## Step 2 — Archive Existing Files
+## Step 2 — Archive Existing File
 
-Before writing new files, check if current versions exist and archive them:
+Before writing, check if a current version exists and archive it:
 
 ```bash
-# Create archive folder if it doesn't exist
 mkdir -p ~/Desktop/AI/scratch/markdown-handoffs/archive
 
-# Archive existing files if present (replace [project-name] with actual name)
 DATE=$(date +%Y-%m-%d)
-[ -f ~/Desktop/AI/scratch/markdown-handoffs/[project-name]-context.md ] && \
-  mv ~/Desktop/AI/scratch/markdown-handoffs/[project-name]-context.md \
-     ~/Desktop/AI/scratch/markdown-handoffs/archive/[project-name]-context-$DATE.md
-
 [ -f ~/Desktop/AI/scratch/markdown-handoffs/[project-name]-handoff.md ] && \
   mv ~/Desktop/AI/scratch/markdown-handoffs/[project-name]-handoff.md \
      ~/Desktop/AI/scratch/markdown-handoffs/archive/[project-name]-handoff-$DATE.md
@@ -69,40 +62,41 @@ DATE=$(date +%Y-%m-%d)
 
 ---
 
-## Step 3 — Generate the Context File
+## Step 3 — Update CLAUDE.md
 
-**Filename:** `[project-name]-context.md`  
-**Write to:** `~/Desktop/AI/scratch/markdown-handoffs/`
+Read `~/.claude/CLAUDE.md`. Based on the session history, identify anything that changed that affects persistent context:
+- New skills added or removed
+- Stack or tool decisions made
+- Project state changes (milestones completed, features shipped)
+- New file locations or paths that matter long-term
+- Anything that would affect how a future session should behave
 
-**Tone:** Clear, readable, no assumed technical knowledge. Written so anyone could drop it into a chat and ask Claude to summarize or elaborate. No jargon unless necessary.
+Make targeted edits only — surgical updates to the relevant lines or sections. Never rewrite CLAUDE.md from scratch.
 
-**Structure:**
-```
-# [Project Name] — Project Context
-*[Month Year]*
-
-## What It Is
-2-3 sentences. What this project is, what it does, who it's for.
-
-## Why It Exists
-The problem it solves or the goal it serves. 1-2 sentences.
-
-## Current State
-What is working right now. Bulleted list, plain language.
-
-## What's Been Done
-Key milestones completed, in plain language. Pull from CHANGELOG or git log.
-
-## What's Next
-What still needs to happen. Plain language, not implementation detail.
-
-## Key Decisions Made
-Any important choices that shaped the project direction and why.
-```
+Confirm what was changed before proceeding:
+> "Updated CLAUDE.md: [list of specific changes, or 'no changes needed']"
 
 ---
 
-## Step 4 — Generate the Handoff File
+## Step 4 — Sync to GitHub
+
+Copy the updated CLAUDE.md to the canonical skill repo and push:
+
+```bash
+cp ~/.claude/CLAUDE.md ~/Desktop/AI/claude-skills/CLAUDE.md
+cd ~/Desktop/AI/claude-skills
+git add CLAUDE.md
+git commit -m "session sync $(date +%Y-%m-%d)"
+git push origin main
+```
+
+If any SKILL.md files were edited this session, copy those to their category folders first and stage them alongside CLAUDE.md before committing.
+
+Confirm: "GitHub synced — CLAUDE.md pushed to origin/main."
+
+---
+
+## Step 5 — Generate the Handoff File
 
 **Filename:** `[project-name]-handoff.md`  
 **Write to:** `~/Desktop/AI/scratch/markdown-handoffs/`
@@ -147,17 +141,10 @@ Only what would cause real problems if forgotten:
 
 ---
 
-## Step 5 — Write the Files
-
-Write both files to disk:
+## Step 6 — Write the File
 
 ```bash
-# Confirm output directory exists
 mkdir -p ~/Desktop/AI/scratch/markdown-handoffs
-
-# Write files (Claude Code writes file content directly)
-# context file → ~/Desktop/AI/scratch/markdown-handoffs/[project-name]-context.md
-# handoff file → ~/Desktop/AI/scratch/markdown-handoffs/[project-name]-handoff.md
 ```
 
 After writing, confirm with:
@@ -165,14 +152,42 @@ After writing, confirm with:
 ls ~/Desktop/AI/scratch/markdown-handoffs/
 ```
 
-Report back: "Handoff files written. Context and handoff are both in `~/Desktop/AI/scratch/markdown-handoffs/`."
+Report back: "Handoff written to `~/Desktop/AI/scratch/markdown-handoffs/[project-name]-handoff.md`."
+
+---
+
+## Step 7 — Chat Project Sync (only when relevant)
+
+Jacob has five Claude.ai chat projects: Career, Prompt Engineering, Cookbook, Test Prep, Systems Project.
+
+These are separate from Claude Code memory and cannot be updated automatically. Run this step only if something changed this session that would meaningfully affect one of those projects.
+
+**What triggers a sync note:**
+- Career — changes to working preferences, McKinsey goal context, professional background
+- Prompt Engineering — skill ecosystem changes, new skills added/removed, CRITICAL framework updates
+- Cookbook / Test Prep / Systems Project — only if directly worked on this session
+
+**If nothing qualifies, skip this step entirely.**
+
+**If something qualifies**, for each affected project output a ready-to-paste prompt Jacob can drop directly into that chat project:
+
+---
+**Chat sync needed: [Project Name]**
+
+Paste this into your [Project Name] project:
+
+> [Write the prompt in Jacob's voice, as if he's speaking directly to that project. Be specific — name what changed, why it matters to that project's context, and what the project should know going forward. 2-4 sentences max. No preamble.]
+---
+
+Write one block per affected project. If multiple projects are affected, list them in order of relevance.
 
 ---
 
 ## Rules
 
 - Read actual state from filesystem and git — never ask Jacob to describe it
-- Keep both files concise — a handoff that requires reading is too long
+- Keep the file concise — a handoff that requires reading is too long
 - The handoff file should feel like picking up mid-sentence, not starting over
 - Do not include information that isn't relevant to continuing the work
 - Always archive before overwriting — never delete old files outright
+- Step 7 is conditional — skip it entirely if nothing changed that affects a chat project

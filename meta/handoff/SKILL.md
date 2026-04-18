@@ -156,6 +156,33 @@ Report back: "Handoff written to `~/Desktop/AI/scratch/markdown-handoffs/[projec
 
 ---
 
+## Step 7 — Chat Project Sync (only when relevant)
+
+Jacob has five Claude.ai chat projects: Career, Prompt Engineering, Cookbook, Test Prep, Systems Project.
+
+These are separate from Claude Code memory and cannot be updated automatically. Run this step only if something changed this session that would meaningfully affect one of those projects.
+
+**What triggers a sync note:**
+- Career — changes to working preferences, McKinsey goal context, professional background
+- Prompt Engineering — skill ecosystem changes, new skills added/removed, CRITICAL framework updates
+- Cookbook / Test Prep / Systems Project — only if directly worked on this session
+
+**If nothing qualifies, skip this step entirely.**
+
+**If something qualifies**, for each affected project output a ready-to-paste prompt Jacob can drop directly into that chat project:
+
+---
+**Chat sync needed: [Project Name]**
+
+Paste this into your [Project Name] project:
+
+> [Write the prompt in Jacob's voice, as if he's speaking directly to that project. Be specific — name what changed, why it matters to that project's context, and what the project should know going forward. 2-4 sentences max. No preamble.]
+---
+
+Write one block per affected project. If multiple projects are affected, list them in order of relevance.
+
+---
+
 ## Rules
 
 - Read actual state from filesystem and git — never ask Jacob to describe it
@@ -163,3 +190,4 @@ Report back: "Handoff written to `~/Desktop/AI/scratch/markdown-handoffs/[projec
 - The handoff file should feel like picking up mid-sentence, not starting over
 - Do not include information that isn't relevant to continuing the work
 - Always archive before overwriting — never delete old files outright
+- Step 7 is conditional — skip it entirely if nothing changed that affects a chat project
