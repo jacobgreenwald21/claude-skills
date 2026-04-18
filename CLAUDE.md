@@ -57,8 +57,6 @@ Claude API course at: ~/Desktop/AI/Claude-Api-Course
 - optimus-prime/ — cross-skill system coach; finds trigger overlaps, dead weight, usage patterns, and portfolio gaps; triggered by "optimus-prime", "optimus", or "autobots roll out"
 - myth-busters/ — A/B skill evaluator; runs same prompt with/without skill, grades assertions, reports pass rate + relative length; triggered by "myth-busters", "test the skill", or "benchmark [skill]"
 - skill-namer/ — generates whimsical + serious name candidates for new skills with trigger phrases; triggered by "let's name this", "name this skill", or "what should I call this"
-- article-extractor/ — extracts clean article text from a URL; pairs with busn4400 as input prep; triggered by article URL + extract request
-
 Note: roundtable v2 (prompts for handoff at end). Handoff/chat-SKILL v3 (frontmatter trigger added). Commander v5 (skill-namer in audit list; GitHub path map embedded; wrap-up chain disambiguated). busn4400 v2 (trigger tightened). critical v2 (trigger tightened). checkpoint v2 (jarvis collision fixed). avoid-ai-writing v3.4.0 (em dashes removed from prose; verbose sections tightened). Retired: tapestry-skills/scrum-sage, tapestry-skills/session-log (moved to ~/.claude/skills/_retired/).
 
 ## Handoff File Output
