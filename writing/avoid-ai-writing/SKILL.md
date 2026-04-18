@@ -1,7 +1,7 @@
 ---
 name: avoid-ai-writing
 description: Audit and rewrite content to remove AI writing patterns ("AI-isms"). Use this skill when asked to "remove AI-isms," "clean up AI writing," "edit writing for AI patterns," "audit writing for AI tells," or "make this sound less like AI." Supports a detection-only mode that flags patterns without rewriting.
-version: 3.3.1
+version: 3.4.0
 license: MIT
 compatibility: Any AI coding assistant that supports agentskills.io SKILL.md format (Claude Code, Cursor, VS Code Copilot, Hermes Agent, OpenHands, etc.) or OpenClaw. No external tools or APIs required.
 metadata:
@@ -24,7 +24,7 @@ This skill operates in one of two modes:
 
 **`detect`** — Flag AI-isms only. No rewriting. Use this mode when:
 - The writer wants to see what's flagged and decide what to fix themselves
-- The flagged patterns might be intentional (AI patterns aren't always bad — they can be effective in small doses)
+- The flagged patterns might be intentional (AI patterns aren't always bad; they can be effective in small doses)
 - You're auditing text you don't want altered (published content, someone else's writing, reference material)
 - You want a quick scan without waiting for a full rewrite
 
@@ -50,7 +50,7 @@ In **detect** mode, your job is to:
 ### Formatting
 - **Em dashes (— and --)**: Replace with commas, periods, parentheses, or rewrite as two sentences. Target: zero. Hard max: one per 1,000 words. This applies to headings and section titles too, not just body prose. Catch both the Unicode em dash (—) and the double-hyphen substitute (--).
 - **Bold overuse**: Strip bold from most phrases. One bolded phrase per major section at most, or none. If something's important enough to bold, restructure the sentence to lead with it instead.
-- **Emoji in headers**: Remove entirely. No `## 🚀 What This Means`. Exception: social posts may use one or two emoji sparingly — at the end of a line, never mid-sentence.
+- **Emoji in headers**: Remove entirely. No `## 🚀 What This Means`. Exception: social posts may use one or two emoji sparingly (at the end of a line, never mid-sentence).
 - **Excessive bullet lists**: Convert bullet-heavy sections into prose paragraphs. Bullets only for genuinely list-like content (feature comparisons, step-by-step instructions, API parameters).
 
 ### Sentence structure
@@ -63,7 +63,7 @@ In **detect** mode, your job is to:
 
 ### Words and phrases to replace
 
-Words are organized into three tiers based on how reliably they signal AI-generated text. This tiered approach — adapted from [brandonwise/humanizer](https://github.com/brandonwise/humanizer)'s vocabulary research — reduces false positives on words that are fine in isolation but suspicious in clusters.
+Words are organized into three tiers based on how reliably they signal AI-generated text. This tiered approach (adapted from [brandonwise/humanizer](https://github.com/brandonwise/humanizer)'s vocabulary research) reduces false positives on words that are fine in isolation but suspicious in clusters.
 
 - **Tier 1 — Always flag.** These words appear 5–20x more often in AI text than human text. Replace on sight.
 - **Tier 2 — Flag in clusters.** Individually fine, but two or more in the same paragraph is a strong AI signal. Flag when they appear together.
@@ -178,7 +178,7 @@ These words are legitimate on their own. When two or more show up together, the 
 
 #### Tier 3 — Flag only at high density
 
-These are normal words. Only flag them when the text is saturated with them — a sign that AI filled space with vague praise instead of specifics.
+These are normal words. Only flag them when the text is saturated with them, a sign that AI filled space with vague praise instead of specifics.
 
 | Word | What to do |
 |---|---|
@@ -200,8 +200,8 @@ These are normal words. Only flag them when the text is saturated with them — 
 These slot-fill constructions signal that a sentence was generated, not written. If a phrase has a blank where a noun or adjective could go and still sound the same, it's too generic.
 
 - "a [adjective] step towards [adjective] AI infrastructure" → describe the specific capability, benchmark, or outcome
-- "a [adjective] step forward for [noun]" → same rule: say what actually changed
-- "Whether you're [X] or [Y]" → false-breadth construction. Pick the audience you're actually addressing, or cut. "Whether you're a startup founder or an enterprise architect" means nothing — it's just "everyone."
+- "a [adjective] step forward for [noun]" → say what actually changed
+- "Whether you're [X] or [Y]" → false-breadth construction. Pick the audience you're actually addressing, or cut. "Whether you're a startup founder or an enterprise architect" means nothing. It's just "everyone."
 - "I recently had the pleasure of [verb]-ing" → review/social AI pattern. Just say what happened: "I talked to," "I read," "I attended."
 
 ### Transition phrases to remove or rewrite
@@ -239,17 +239,16 @@ These slot-fill constructions signal that a sentence was generated, not written.
   - "It is important to note that" → (just state it)
   - "In terms of" → (rewrite)
   - "The reality is that" → (cut or just state the claim)
-- Note: "In order to," "Due to the fact that," and "At the end of the day" are covered in the word/phrase table and transition sections above — don't duplicate rules.
 
 ### Generic conclusions
 - "The future looks bright," "Only time will tell," "One thing is certain," "As we move forward" — these are filler disguised as conclusions. Cut them. If the piece needs a closing thought, make it specific to the argument.
 
 ### Chatbot artifacts
 - "I hope this helps!", "Certainly!", "Absolutely!", "Great question!", "Feel free to reach out," "Let me know if you need anything else" — these are conversational tics from chat interfaces, not writing. Remove entirely.
-- Also watch for: "In this article, we will explore…" or "Let's dive in!" — these are AI-generated meta-narration. Cut or rewrite with a direct opening.
+- Also watch for: "In this article, we will explore…" or "Let's dive in!" — AI-generated meta-narration. Cut or rewrite with a direct opening.
 
 ### "Let's" constructions
-- "Let's explore," "Let's take a look," "Let's break this down," "Let's examine" — AI uses "let's" as a false-collaborative opener to ease into a topic. It's filler that delays the actual point. Just start with the point. "Let's dive in" is covered above under chatbot artifacts, but the pattern is broader than that — flag any "let's + verb" that's functioning as a transition rather than a genuine invitation to act.
+- "Let's explore," "Let's take a look," "Let's break this down," "Let's examine" — AI uses "let's" as a false-collaborative opener to ease into a topic. It's filler that delays the actual point. Just start with the point. Flag any "let's + verb" functioning as a transition rather than a genuine invitation to act.
 
 ### Notability name-dropping
 - AI text piles on prestigious citations to manufacture credibility: "cited in The New York Times, BBC, Financial Times, and The Hindu." If a source matters, use it with context: "In a 2024 NYT interview, she argued..." One specific reference beats four name-drops.
@@ -276,68 +275,65 @@ These slot-fill constructions signal that a sentence was generated, not written.
 - "While specific details are limited based on available information," "As of my last update," "I don't have access to real-time data." These are model limitations leaking into prose. Either find the information or remove the hedge. Never publish a sentence that admits the writer didn't look something up.
 
 ### Novelty inflation
-- AI text treats established concepts as if the speaker invented or discovered them: "He introduced a term," "She coined the phrase," "a concept nobody's naming," "a failure mode nobody talks about." In reality, most ideas in a conversation are applications of existing concepts, not inventions.
-- Two problems. First, it's factually risky: if the concept already has a Wikipedia page or conference talks from last year, claiming novelty makes the writer look uninformed. Second, it flatters the subject in a way that reads as promotional rather than analytical.
+- AI text treats established concepts as if the speaker invented them: "He introduced a term," "She coined the phrase," "a concept nobody's naming." Most ideas in a conversation are applications of existing concepts, not inventions. Claiming novelty is factually risky and flatters the subject in a way that reads as promotional.
 - The fix: describe what the person *did with* the concept, not that they discovered it. "Michel walked through how context poisoning works in practice" instead of "Michel introduced a term I hadn't heard before: context poisoning." If you're unsure whether something is novel, assume it isn't and frame accordingly.
-- Related patterns to flag: "the failure mode nobody's naming," "a problem nobody talks about," "the insight everyone's missing," "what nobody tells you about." These are engagement-bait framings that claim scarcity of knowledge where none exists.
+- Also flag: "the failure mode nobody's naming," "a problem nobody talks about," "the insight everyone's missing." These claim scarcity of knowledge where none exists.
 
 ### Emotional flatline
-- AI claims emotions as a structural crutch without conveying them through the writing: "What surprised me most," "I was fascinated to discover," "What struck me was," "I was excited to learn," "The most interesting part."
-- Two problems. First, it's tell-don't-show: if the thing is genuinely surprising, the reader should feel that from the content, not from the writer announcing it. Second, these phrases are massively overused as list introductions and transitions. They're filler wearing an emotion costume.
-- This pattern isn't always AI. It's also a sign of lazy human writing on autopilot. Flag it either way.
-- The fix isn't "never say surprised." It's: if you claim an emotion, the writing around it should earn it. Otherwise cut the claim and present the thing directly.
-- Related pattern: "hit differently" / "hits different." AI uses trendy colloquialisms as a shortcut to sound relatable without earning the emotional beat. If something genuinely affected you, describe how. Otherwise cut.
+- AI claims emotions as a structural crutch without earning them: "What surprised me most," "I was fascinated to discover," "What struck me was." If the thing is genuinely surprising, the reader should feel that from the content, not from the writer announcing it. These phrases are also massively overused as list introductions and transitions. Flag them regardless of whether the writing is AI or human.
+- The fix: if you claim an emotion, the writing around it should earn it. Otherwise cut the claim and present the thing directly.
+- Related: "hit differently" / "hits different." If something genuinely affected you, describe how. Otherwise cut.
 
 ### False concession structure
-- "While X is impressive, Y remains a challenge" or "Although X has made strides, Y is still an open question." AI uses this to sound balanced without actually weighing anything. Both halves are vague. Either make the concession specific (name what's impressive, name the actual challenge) or pick a side and argue it.
+- "While X is impressive, Y remains a challenge" or "Although X has made strides, Y is still an open question." AI uses this to sound balanced without actually weighing anything. Both halves are vague. Either make the concession specific or pick a side and argue it.
 
 ### Rhetorical question openers
-- "But what does this mean for developers?" / "So why should you care?" / "What's next?" � AI uses rhetorical questions to stall before the actual point. If you know the answer, just say it. Rhetorical questions are earned by strong setup, not dropped as section transitions.
+- "But what does this mean for developers?" / "So why should you care?" / "What's next?" — AI uses rhetorical questions to stall before the actual point. If you know the answer, just say it. Rhetorical questions are earned by strong setup, not dropped as section transitions.
 
 ### Parenthetical hedging
-- "(and, increasingly, Z)" / "(or, more precisely, Y)" / "(and perhaps more importantly, W)" � AI inserts parenthetical asides to sound nuanced without committing. If the aside matters, give it its own sentence. If it doesn't, cut it.
+- "(and, increasingly, Z)" / "(or, more precisely, Y)" / "(and perhaps more importantly, W)" — AI inserts parenthetical asides to sound nuanced without committing. If the aside matters, give it its own sentence. If it doesn't, cut it.
 
 ### Numbered list inflation
-- "Three key takeaways" / "Five things to know" / "Here are the top seven" � AI defaults to numbered lists because they're structurally safe. Only use numbered lists when the content genuinely has that many discrete, parallel items. If you're padding to hit a number, the list shouldn't exist.
+- "Three key takeaways" / "Five things to know" / "Here are the top seven" — AI defaults to numbered lists because they're structurally safe. Only use numbered lists when the content genuinely has that many discrete, parallel items. If you're padding to hit a number, the list shouldn't exist.
 
 ### Reasoning chain artifacts
-- "Let me think step by step," "Breaking this down," "To approach this systematically," "Step 1:," "Here's my thought process," "First, let's consider," "Working through this logically" — these are artifacts of chain-of-thought reasoning leaking into published prose. The reader doesn't need to see the scaffolding. State the conclusion, then the evidence.
+- "Let me think step by step," "Breaking this down," "To approach this systematically," "Step 1:," "Here's my thought process," "Working through this logically" — these are artifacts of chain-of-thought reasoning leaking into published prose. The reader doesn't need to see the scaffolding. State the conclusion, then the evidence.
 - Also watch for numbered reasoning steps that read like an internal monologue rather than an argument meant for an audience.
 
 ### Sycophantic tone
-- "Great question!", "Excellent point!", "You're absolutely right!", "That's a really insightful observation" — these are conversational rewards from chat interfaces, not writing. Remove entirely.
+- "Great question!", "Excellent point!", "You're absolutely right!", "That's a really insightful observation" — conversational rewards from chat interfaces, not writing. Remove entirely.
 - Distinct from chatbot artifacts: sycophancy specifically validates the reader/questioner rather than just performing helpfulness.
 
 ### Acknowledgment loops
 - "You're asking about," "The question of whether," "To answer your question," "That's a great question. The..." — AI restates the prompt before answering. In writing, this is pure filler. The reader knows what they asked. Just answer.
-- Related pattern: opening a section by summarizing what the previous section said. If the structure is clear, the reader doesn't need a recap.
+- Related: opening a section by summarizing what the previous section said. If the structure is clear, the reader doesn't need a recap.
 
 ### Confidence calibration phrases
 - "It's worth noting that," "Interestingly," "Surprisingly," "Importantly," "Significantly," "Notably," "Certainly," "Undoubtedly," "Without a doubt" — AI uses these to signal how the reader should feel about a fact instead of letting the fact speak for itself.
-- "Here's what's interesting," "Here's the interesting part," "Here are the parts I found interesting" — reader-steering cue that pre-interprets importance. Works when followed by genuinely surprising data; fails when it introduces a restatement of something obvious (which is the AI default).
-- One "notably" in a 2,000-word piece is fine. Three in 500 words is AI-style emphasis stacking. Flag by density.
+- "Here's what's interesting," "Here's the interesting part," "Here are the parts I found interesting" — reader-steering cues that pre-interpret importance. Works when followed by genuinely surprising data; fails when it introduces a restatement of something obvious.
+- One "notably" in a 2,000-word piece is fine. Three in 500 words is emphasis stacking. Flag by density.
 
 ### Excessive structure
 - Too many headers in short text: more than 3 headings in under 300 words is almost always AI trying to look organized. Merge sections or use prose transitions instead.
 - Too many list items: 8+ bullet points in under 200 words means the content should be a paragraph, not a list.
-- Formulaic section headers: "Overview," "Key Points," "Summary," "Conclusion," "Introduction" — these are default AI scaffolding. Use headers that tell the reader something specific about what follows.
+- Formulaic section headers: "Overview," "Key Points," "Summary," "Conclusion," "Introduction" — default AI scaffolding. Use headers that tell the reader something specific about what follows.
 
 ### Rhythm and uniformity
 
-These aren't individual word or phrase problems — they're patterns in how the text flows as a whole. AI text is metronomic; human text has varied rhythm.
+These aren't individual word or phrase problems. They're patterns in how the text flows as a whole. AI text is metronomic; human text has varied rhythm.
 
-**Structure is the #1 detection signal.** AI detection tools (including Pangram, which trains a classifier on 28M human documents) weight structural regularity higher than vocabulary. Consistent sentence construction, uniform pacing, and symmetrical phrasing patterns are harder to mask than swapping out a few flagged words. If you fix every word on the Tier 1 list but leave the rhythm untouched, the text still reads as AI-generated.
+**Structure is the #1 detection signal.** AI detection tools (including Pangram, which trains a classifier on 28M human documents) weight structural regularity higher than vocabulary. Consistent sentence construction, uniform pacing, and symmetrical phrasing patterns are harder to mask than swapping out a few flagged words. Fix every word on the Tier 1 list but leave the rhythm untouched, and the text still reads as AI-generated.
 
 - **Sentence length uniformity**: If most sentences are 15–25 words, the text sounds robotic. Mix short punchy sentences (3–8 words) with longer flowing ones (20+). Fragments work. Questions break the monotony.
 - **Paragraph length uniformity**: If every paragraph is 3–5 sentences and roughly the same size, vary deliberately. Some paragraphs should be one sentence. Some should be longer.
-- **Vocabulary repetition vs. synonym cycling**: AI either repeats the same word mechanically or cycles through synonyms conspicuously. Human writers repeat when the word is right and vary when it's natural — there's no formula.
+- **Vocabulary repetition vs. synonym cycling**: AI either repeats the same word mechanically or cycles through synonyms conspicuously. Human writers repeat when the word is right and vary when it's natural. There's no formula.
 - **Read-aloud test**: If the text sounds like it could be read by a text-to-speech engine without sounding weird, it's probably too uniform. Human writing has rhythm that resists robotic delivery.
 - **Missing first-person perspective**: Where appropriate, the writer should have opinions, preferences, and reactions. AI is relentlessly neutral. If the piece is supposed to have a voice, the absence of "I think," "in my experience," or a stated preference is itself an AI tell.
-- **Over-polishing**: Aggressively editing out every irregularity can push human writing *toward* AI statistical profiles. Natural disfluency, idiosyncratic word choices, and uneven pacing are what keep text out of the "AI-generated" classification. Don't sand away all personality in pursuit of clean prose. This skill should make writing sound more human, not less — if you apply every rule at maximum strictness, you risk creating the very uniformity you're trying to avoid.
+- **Over-polishing**: Aggressively editing out every irregularity can push human writing toward AI statistical profiles. Natural disfluency, idiosyncratic word choices, and uneven pacing are what keep text out of the "AI-generated" classification. Don't sand away all personality in pursuit of clean prose. This skill should make writing sound more human, not less.
 
 ### When to rewrite from scratch vs. patch
 
-If the text has 5+ flagged vocabulary hits across multiple categories, 3+ distinct pattern categories triggered, and uniform sentence/paragraph length, patching individual phrases won't fix it — the structure itself is AI-generated. Advise a full rewrite: state the core point in one sentence, then rebuild from there.
+If the text has 5+ flagged vocabulary hits across multiple categories, 3+ distinct pattern categories triggered, and uniform sentence/paragraph length, patching individual phrases won't fix it. The structure itself is AI-generated. Advise a full rewrite: state the core point in one sentence, then rebuild from there.
 
 ---
 
@@ -345,13 +341,13 @@ If the text has 5+ flagged vocabulary hits across multiple categories, 3+ distin
 
 Not all AI-isms are equal. When doing a quick pass or triaging a large document, prioritize by tier:
 
-### P0 � Credibility killers (fix immediately)
+### P0 — Credibility killers (fix immediately)
 - Cutoff disclaimers ("As of my last update")
 - Chatbot artifacts ("I hope this helps!", "Great question!")
 - Vague attributions without sources ("Experts believe")
 - Significance inflation on routine events
 
-### P1 � Obvious AI smell (fix before publishing)
+### P1 — Obvious AI smell (fix before publishing)
 - Word-list violations (delve, leverage, harness, robust, etc.)
 - Template phrases and slot-fill constructions
 - "Let's" transition openers
@@ -360,7 +356,7 @@ Not all AI-isms are equal. When doing a quick pass or triaging a large document,
 - Bold overuse
 - Em dash frequency (above 1 per 1,000 words)
 
-### P2 � Stylistic polish (fix when time allows)
+### P2 — Stylistic polish (fix when time allows)
 - Generic conclusions ("The future looks bright")
 - Compulsive rule of three
 - Uniform paragraph length
@@ -383,12 +379,12 @@ Pass an optional context hint to adjust rule strictness. If no context is specif
 
 ### Profile definitions
 
-**`linkedin`** � Short-form social. Punchy fragments, visual formatting matter.
-**`blog`** � Default. Standard long-form prose. All rules apply at full strength.
-**`technical-blog`** � Long-form with code, architecture, APIs. Technical terms get a pass.
-**`investor-email`** � High-trust audience. Tighten everything; promotional language is the biggest risk.
-**`docs`** � Documentation, READMEs, guides. Clarity over voice.
-**`casual`** � Slack messages, internal notes, quick replies. Only catch the worst offenders.
+**`linkedin`** — Short-form social. Punchy fragments, visual formatting matter.
+**`blog`** — Default. Standard long-form prose. All rules apply at full strength.
+**`technical-blog`** — Long-form with code, architecture, APIs. Technical terms get a pass.
+**`investor-email`** — High-trust audience. Tighten everything; promotional language is the biggest risk.
+**`docs`** — Documentation, READMEs, guides. Clarity over voice.
+**`casual`** — Slack messages, internal notes, quick replies. Only catch the worst offenders.
 
 ### Tolerance matrix
 
@@ -427,7 +423,7 @@ When no context is specified, infer from these signals:
 | Code blocks, API references, or technical architecture | `technical-blog` |
 | Salutation ("Hi [name]", "Dear") + investor/fundraising language | `investor-email` |
 | Step-by-step instructions, parameter docs, README structure | `docs` |
-| No strong signals | `blog` (safest default � all rules apply) |
+| No strong signals | `blog` (safest default — all rules apply) |
 
 If auto-detection feels wrong, say which profile you're using and why. The user can override.
 
@@ -450,7 +446,7 @@ The full rewritten content. Preserve the original structure, intent, and all spe
 A brief summary of the major edits made. Not every word, just the meaningful changes.
 
 **4. Second-pass audit**
-Re-read the rewritten version from section 2. Identify any remaining AI tells that survived the first pass — recycled transitions, lingering inflation, copula avoidance, filler phrases, or anything else from the categories above. Fix them, return the corrected text inline, and note what changed in this pass. If the rewrite is clean, say so.
+Re-read the rewritten version from section 2. Identify any remaining AI tells that survived the first pass: recycled transitions, lingering inflation, copula avoidance, filler phrases, or anything else from the categories above. Fix them, return the corrected text inline, and note what changed in this pass. If the rewrite is clean, say so.
 
 ### Detect mode
 
@@ -460,7 +456,7 @@ Return your response in two sections:
 A bulleted list of every AI-ism identified, with the offending text quoted. Group by severity (P0, P1, P2).
 
 **2. Assessment**
-For each flag, note whether it's a clear problem or a judgment call. Some AI-associated patterns are effective writing techniques — uniform paragraph length is a problem, but a well-placed "however" isn't. Call out which flags the writer should definitely fix vs. which ones are worth a second look but might be fine in context. If the text is clean, say so.
+For each flag, note whether it's a clear problem or a judgment call. Some AI-associated patterns are effective writing techniques. Uniform paragraph length is a problem, but a well-placed "however" isn't. Call out which flags the writer should definitely fix vs. which ones are worth a second look but might be fine in context. If the text is clean, say so.
 
 ---
 
