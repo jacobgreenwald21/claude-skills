@@ -67,6 +67,7 @@ Skills for working with file formats.
 | docx | "Word doc", "word document", ".docx", or requests for a report/memo/letter as a Word file | Creates, reads, edits, and manipulates Word documents with full formatting support. |
 | pptx | "deck", "slides", "presentation", or any .pptx filename | Handles all .pptx operations — creating, editing, reading, and combining presentations. |
 | xlsx | Any .xlsx, .xlsm, .csv, or .tsv file reference, or any spreadsheet task | Creates, reads, edits, and cleans spreadsheet files with formula integrity and formatting standards. |
+| article-extractor | "extract [URL]", "download this article", "save this blog post as text", "extract the content from [URL]" | Extracts clean article content from URLs — removes ads, navigation, and clutter — and saves as a readable text file. Pairs well with busn4400 as input prep. |
 
 ---
 
@@ -77,5 +78,3 @@ Utility skills and frameworks.
 | Skill | Trigger | Purpose |
 |---|---|---|
 | critical | "help me build a prompt", "design a prompt for", "let's use CRITICAL", "build me a prompt", "prompt for" | Runs the full CRITICAL framework elicitation process to build a structured, high-quality prompt for any task. |
-| tapestry-skills | *(no top-level SKILL.md — collection with subdirectories)* | Extended skill collection; see subdirectories for individual skill files. |
-| tapestry-skills / article-extractor | "extract [URL]", "download this article", "save this blog post as text", "extract the content from [URL]" | Extracts clean article content from URLs — removes ads, navigation, and clutter — and saves as a readable text file. |
