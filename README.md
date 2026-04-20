@@ -38,7 +38,6 @@ Skills for producing or improving written content.
 
 | Skill | Trigger | Purpose |
 |---|---|---|
-| busn4400 | "BUSN 4400", "busn4400", "class blog", "reaction post", "weekly reaction", "write/draft a slack/blog post or comment", "class discussion post", "peer comment for class" | Routes BUSN 4400 deliverable requests to the correct sub-process for all four recurring deliverable types. |
 | avoid-ai-writing | "remove AI-isms", "clean up AI writing", "edit writing for AI patterns", "audit writing for AI tells", "make this sound less like AI" | Audits content for AI writing patterns. Rewrite mode proposes structure and waits for approval before rewriting; detect mode flags only. Preserves casual voice on personal/reflective pieces. |
 | resume-tailoring | *(no SKILL.md — entry point via README; multi-file skill package)* | AI-powered resume generation that researches roles, surfaces undocumented experiences, and produces tailored resumes from your existing resume library. |
 
