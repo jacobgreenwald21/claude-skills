@@ -1,9 +1,9 @@
 ---
 name: commander
-description: Session auditor and self-improvement loop for Jacob's Claude Code skill ecosystem. Trigger this skill whenever Jacob says "run Commander." Responsibilities: audit all installed skills and flag issues, capture mid-session skill misfires, update MEMORY.md with session learnings, and back up the skills directory. Claude Code only — requires filesystem access. Do NOT trigger automatically; only fires on explicit "run Commander" call.
+description: Session auditor and self-improvement loop for Jacob's Claude Code skill ecosystem. Trigger this skill whenever Jacob says "run Commander." Responsibilities: capture misfires and session-triggered skills, audit only skills that fired (session-scoped), update MEMORY.md with session learnings, and back up the skills directory. Claude Code only — requires filesystem access. Do NOT trigger automatically; only fires on explicit "run Commander" call.
 ---
 
-# Commander
+# Commander v8
 
 Session auditor and self-improvement loop. Explicit trigger only: "run Commander."
 
@@ -13,33 +13,40 @@ Session auditor and self-improvement loop. Explicit trigger only: "run Commander
 
 Commander does four things every run, in this order:
 
-1. **Capture mid-session misfires** — ask if any skills misfired this session
-2. **Audit all installed skills** — scan each SKILL.md and flag issues
+1. **Capture session scope** — ask about misfires AND which skills fired this session
+2. **Audit session-triggered skills** — deep audit only for skills that actually ran; presence check for everything else
 3. **Update MEMORY.md** — append session learnings (never overwrite)
 4. **Back up skills directory** — date-stamped backup every run
 
----
-
-## Step 1 — Mid-Session Misfire Capture
-
-Ask Jacob:
-
-> "Any skill misfires this session? If yes, describe what happened and what the correct behavior should have been. If no, say 'none' and we'll move on."
-
-Wait for response. If misfires are reported:
-- Note the skill name, what it did wrong, and the correct behavior
-- These get written to MEMORY.md in Step 3
-- Do NOT auto-rebuild the skill — flag it and ask at the end of Step 2
-
-If no misfires: proceed to Step 2.
+> Full portfolio audit (trigger overlaps, dead weight, gap analysis across all skills) belongs to **optimus-prime**, not Commander. Commander's audit scope is session-scoped by design.
 
 ---
 
-## Step 2 — Skill Audit
+## Step 1 — Session Scope Capture
 
-Scan every SKILL.md in `~/.claude/skills/` and its subdirectories.
+Ask Jacob two things in a single prompt:
 
-For each skill, check:
+> "Two quick questions before the audit:
+> 1. Any skill misfires this session? If yes, describe what happened and the correct behavior. If no, say 'none.'
+> 2. Which skills actually fired this session? List them (e.g., 'yoda, critical, checkpoint') or say 'none' if you didn't use any."
+
+Wait for response. Process both answers:
+
+**Misfires:** Note the skill name, what it did wrong, and the correct behavior. These get written to MEMORY.md in Step 3. Do NOT auto-rebuild — flag it and ask at the end of Step 2.
+
+**Session-triggered skills:** This list becomes the Tier 1 deep-audit scope for Step 2. If Jacob says "none" or can't recall, do Tier 2 presence check only for all skills and note that no deep audit was run this session.
+
+If no misfires and no skills triggered: proceed to Step 2 with empty Tier 1.
+
+---
+
+## Step 2 — Session-Scoped Skill Audit
+
+Audit runs in two tiers based on what fired this session.
+
+### Tier 1 — Deep Audit (session-triggered skills only)
+
+For each skill Jacob listed in Step 1, read its full SKILL.md and check:
 
 | Check | What to look for |
 |-------|-----------------|
@@ -50,15 +57,20 @@ For each skill, check:
 | Missing guardrails | Are there edge cases with no handling? |
 | Size | Is SKILL.md approaching 500 lines? Flag for refactor. |
 
-Skills to audit (current ecosystem):
+### Tier 2 — Presence Check (all other installed skills)
+
+For every skill NOT in the Tier 1 list, read only the first 15 lines (frontmatter + opening section). Confirm:
+- File exists and is readable
+- `name` field is present
+- Trigger phrase is still defined
+- No obvious corruption or empty body
+
+Presence check does NOT evaluate quality, conflicts, or stale references — that's optimus-prime's job.
+
+### Skills list (current ecosystem)
 
 ```
 ~/.claude/skills/avoid-ai-writing/SKILL.md
-~/.claude/skills/busn4400/SKILL.md
-~/.claude/skills/busn4400/references/blog-comment.md
-~/.claude/skills/busn4400/references/blog-post.md
-~/.claude/skills/busn4400/references/slack-comment.md
-~/.claude/skills/busn4400/references/slack-post.md
 ~/.claude/skills/checkpoint/SKILL.md
 ~/.claude/skills/code-debug/SKILL.md
 ~/.claude/skills/code-review/SKILL.md
@@ -83,17 +95,21 @@ Skills to audit (current ecosystem):
 ~/.claude/skills/yoda/SKILL.md
 ```
 
-Output a clean audit report:
+### Audit output
 
 ```
 SKILL AUDIT — [DATE]
 
+Tier 1 (deep audit — session-triggered):
 ✓ critical/SKILL.md — No issues
-✓ skill-builder/SKILL.md — No issues
-⚠ busn4400/SKILL.md — [issue description]
+⚠ yoda/SKILL.md — [issue description]
+
+Tier 2 (presence check — not triggered this session):
+✓ avoid-ai-writing/SKILL.md — present
+✓ checkpoint/SKILL.md — present
 ...
 
-Issues found: N
+Deep audit issues: N | Presence failures: N
 ```
 
 After the report, ask:
@@ -101,14 +117,13 @@ After the report, ask:
 
 Wait for response before proceeding.
 
-After applying any fixes, always sync the updated SKILL.md files to the GitHub repo using the path map below before moving to Step 3. For each skill changed, check if the README entry needs updating — if the skill's trigger, purpose, or behavior changed in a user-visible way, update `~/Desktop/AI/claude-skills/README.md` before committing.
+After applying any fixes, sync updated SKILL.md files to the GitHub repo using the path map below. For each skill changed, check if the README entry needs updating — if the skill's trigger, purpose, or behavior changed in a user-visible way, update `~/Desktop/AI/claude-skills/README.md` before committing.
 
 **GitHub repo path map** (`~/Desktop/AI/claude-skills/`):
 
 | Skill | Repo path |
 |-------|-----------|
 | avoid-ai-writing | writing/avoid-ai-writing/ |
-| busn4400 | writing/busn4400/ |
 | resume-tailoring | writing/resume-tailoring/ |
 | code-debug | code/code-debug/ |
 | code-review | code/code-review/ |
@@ -123,12 +138,12 @@ After applying any fixes, always sync the updated SKILL.md files to the GitHub r
 | skill-builder | meta/skill-builder/ |
 | skill-namer | meta/skill-namer/ |
 | handoff | meta/handoff/ |
+| fuel-gauge | meta/fuel-gauge/ |
 | checkpoint | session/checkpoint/ |
 | roundtable | session/roundtable/ |
 | verdict | session/verdict/ |
 | yoda | session/yoda/ |
 | critical | tools/critical/ |
-| fuel-gauge | meta/fuel-gauge/ |
 
 Sync command: `cp ~/.claude/skills/[skill]/SKILL.md ~/Desktop/AI/claude-skills/[repo-path]/SKILL.md`
 Then stage and prompt to push: `git -C ~/Desktop/AI/claude-skills add . && git -C ~/Desktop/AI/claude-skills commit -m "commander sync [DATE]"` — confirm before pushing.
@@ -154,7 +169,7 @@ Read the current file. Make targeted updates only:
 - Update the "open issues" list with anything newly flagged in Step 2
 Never rewrite the file — surgical edits only.
 
-**3d — Append to session-log.md**
+**3c — Append to session-log.md**
 File location: `~/.claude/projects/-Users-jacob/memory/session-log.md`
 
 If the file does not exist, create it with this frontmatter:
@@ -210,10 +225,12 @@ Confirm backup completed:
 After all four steps, output a clean session summary:
 
 ```
-COMMANDER — SESSION COMPLETE [DATE]
+COMMANDER v8 — SESSION COMPLETE [DATE]
 
+Skills triggered this session: N (deep audited)
+Skills presence-checked: N
+Deep audit issues: N | Presence failures: N
 Misfires logged: N
-Skill issues flagged: N
 MEMORY.md updated: ✓
 Backup saved: ✓ skills-[DATE]
 
@@ -235,7 +252,7 @@ When this trigger fires, run the following sequence in order. Complete each step
 
 2. **fuel-gauge** — run the fuel-gauge token audit. Produces a ranked cost table + efficiency recommendations as a section inside the Commander report.
 
-3. **Commander audit** — run the full Commander sequence: misfire capture → skill audit → MEMORY.md update → backup.
+3. **Commander audit** — run the full Commander sequence: session scope capture → session-scoped skill audit → MEMORY.md update → backup.
 
 4. **GitHub sync** — copy any updated SKILL.md files and CLAUDE.md to `~/Desktop/AI/claude-skills/`, then stage all changes:
    ```bash
@@ -278,3 +295,5 @@ If Jacob says something like "that output was wrong, log it" at any point during
 - Always back up before making any skill changes
 - Session end only — do not surface MEMORY.md at session start
 - Claude Code only — this skill requires filesystem access
+- Tier 1 deep audit only runs for skills Jacob confirms were triggered this session
+- Full portfolio audit (cross-skill patterns, dead weight, gaps) → optimus-prime, not Commander
