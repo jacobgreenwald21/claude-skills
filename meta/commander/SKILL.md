@@ -65,6 +65,7 @@ Skills to audit (current ecosystem):
 ~/.claude/skills/commander/SKILL.md
 ~/.claude/skills/critical/SKILL.md
 ~/.claude/skills/docx/SKILL.md
+~/.claude/skills/fuel-gauge/SKILL.md
 ~/.claude/skills/handoff/SKILL.md
 ~/.claude/skills/handoff/chat-SKILL.md
 ~/.claude/skills/handoff/claude-code-SKILL.md
@@ -127,6 +128,7 @@ After applying any fixes, always sync the updated SKILL.md files to the GitHub r
 | verdict | session/verdict/ |
 | yoda | session/yoda/ |
 | critical | tools/critical/ |
+| fuel-gauge | meta/fuel-gauge/ |
 
 Sync command: `cp ~/.claude/skills/[skill]/SKILL.md ~/Desktop/AI/claude-skills/[repo-path]/SKILL.md`
 Then stage and prompt to push: `git -C ~/Desktop/AI/claude-skills add . && git -C ~/Desktop/AI/claude-skills commit -m "commander sync [DATE]"` — confirm before pushing.
@@ -231,9 +233,11 @@ When this trigger fires, run the following sequence in order. Complete each step
 
 1. **roundtable** — produce the human-readable session recap (what was built, where things stand, what's next). Follow the roundtable skill's output format exactly.
 
-2. **Commander audit** — run the full Commander sequence: misfire capture → skill audit → MEMORY.md update → backup.
+2. **fuel-gauge** — run the fuel-gauge token audit. Produces a ranked cost table + efficiency recommendations as a section inside the Commander report.
 
-3. **GitHub sync** — copy any updated SKILL.md files and CLAUDE.md to `~/Desktop/AI/claude-skills/`, then stage all changes:
+3. **Commander audit** — run the full Commander sequence: misfire capture → skill audit → MEMORY.md update → backup.
+
+4. **GitHub sync** — copy any updated SKILL.md files and CLAUDE.md to `~/Desktop/AI/claude-skills/`, then stage all changes:
    ```bash
    git -C ~/Desktop/AI/claude-skills add .
    ```
@@ -241,7 +245,7 @@ When this trigger fires, run the following sequence in order. Complete each step
    - On confirmation: `git -C ~/Desktop/AI/claude-skills commit -m "session sync [DATE]" && git -C ~/Desktop/AI/claude-skills push origin main`
    - If Jacob declines: skip the commit/push and proceed to jarvis.
 
-4. **jarvis** — read session context and memory files, then surface 3 short-term + 1 long-term idea based on everything that just happened.
+5. **jarvis** — read session context and memory files, then surface 3 short-term + 1 long-term idea based on everything that just happened.
 
 Do not skip or reorder steps. Each step feeds context into the next — roundtable surfaces what was built, Commander logs it, GitHub sync keeps the repo current, jarvis uses that state to recommend what comes next.
 

@@ -10,7 +10,8 @@ Skills that manage, evaluate, or build other skills.
 
 | Skill | Trigger | Purpose |
 |---|---|---|
-| commander | "run Commander" | Session auditor — captures misfires, audits full skill portfolio, reads and clears open-items.md, updates MEMORY.md, backs up skills directory, and runs end-of-session chain. |
+| commander | "run Commander" | Session auditor — captures misfires, audits full skill portfolio, reads and clears open-items.md, updates MEMORY.md, backs up skills directory, and runs end-of-session chain (now includes fuel-gauge as a named step). |
+| fuel-gauge | "fuel gauge", "token audit", "check context usage", "check the fuel gauge" | Heuristic token usage auditor — estimates cost per skill fired, ranks by expense, surfaces efficiency recommendations and chain opportunities. Auto-runs inside Commander. |
 | optimus-prime | "optimus-prime", "optimus", "autobots roll out", "cross-skill review", "skill system audit" | Holistic cross-skill analysis — finds trigger overlaps, underused skills, and systemic gaps across the full portfolio. |
 | myth-busters | "myth-busters", "test the skill", "benchmark [skill name]", "run myth-busters on [skill]" | Runs an A/B evaluation of a specific skill — transcript-aware scoping, binary assertion grading, and a pass rate comparison. |
 | skill-builder | "build a new skill", "create a skill", "I want a skill that", "add a skill for", "new skill for", "skill that does" | Interviews on intent, drafts a new SKILL.md, archives before every write, runs test cases, tunes the trigger, and iterates until the skill works correctly. |
