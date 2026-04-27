@@ -145,8 +145,15 @@ After applying any fixes, sync updated SKILL.md files to the GitHub repo using t
 | yoda | session/yoda/ |
 | critical | tools/critical/ |
 
-Sync command: `cp ~/.claude/skills/[skill]/SKILL.md ~/Desktop/AI/claude-skills/[repo-path]/SKILL.md`
-Then stage and prompt to push: `git -C ~/Desktop/AI/claude-skills add . && git -C ~/Desktop/AI/claude-skills commit -m "commander sync [DATE]"` — confirm before pushing.
+**Sync order — always follow this sequence before committing:**
+
+1. Copy each changed SKILL.md to its repo path: `cp ~/.claude/skills/[skill]/SKILL.md ~/Desktop/AI/claude-skills/[repo-path]/SKILL.md`
+2. Copy CLAUDE.md: `cp ~/.claude/CLAUDE.md ~/Desktop/AI/claude-skills/CLAUDE.md`
+3. If any skill's trigger, purpose, or behavior changed in a user-visible way, update `~/Desktop/AI/claude-skills/README.md` now — before staging
+4. Stage everything in one shot: `git -C ~/Desktop/AI/claude-skills add .`
+5. Prompt to commit and push: `git -C ~/Desktop/AI/claude-skills commit -m "commander sync [DATE]" && git -C ~/Desktop/AI/claude-skills push origin main` — confirm before running
+
+Never commit skill changes and CLAUDE.md/README.md in separate commits. All file copies happen before `git add .`.
 
 ---
 
@@ -254,10 +261,14 @@ When this trigger fires, run the following sequence in order. Complete each step
 
 3. **Commander audit** — run the full Commander sequence: session scope capture → session-scoped skill audit → MEMORY.md update → backup.
 
-4. **GitHub sync** — copy any updated SKILL.md files and CLAUDE.md to `~/Desktop/AI/claude-skills/`, then stage all changes:
-   ```bash
-   git -C ~/Desktop/AI/claude-skills add .
-   ```
+4. **GitHub sync** — in this exact order before staging:
+   1. Copy each changed SKILL.md: `cp ~/.claude/skills/[skill]/SKILL.md ~/Desktop/AI/claude-skills/[repo-path]/SKILL.md`
+   2. Copy CLAUDE.md: `cp ~/.claude/CLAUDE.md ~/Desktop/AI/claude-skills/CLAUDE.md`
+   3. Update `~/Desktop/AI/claude-skills/README.md` if any skill's trigger, purpose, or behavior changed
+   4. Stage everything: `git -C ~/Desktop/AI/claude-skills add .`
+
+   Never commit skill changes and CLAUDE.md/README.md in separate commits — all copies happen before `git add .`.
+
    Prompt Jacob: "Ready to push updates to GitHub. Confirm?"
    - On confirmation: `git -C ~/Desktop/AI/claude-skills commit -m "session sync [DATE]" && git -C ~/Desktop/AI/claude-skills push origin main`
    - If Jacob declines: skip the commit/push and proceed to jarvis.
