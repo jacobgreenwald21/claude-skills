@@ -47,7 +47,7 @@ Claude API course at: ~/Desktop/AI/Claude-Api-Course
 - handoff/ — generates a single handoff markdown file at end of sessions; also updates CLAUDE.md with session changes
 - code-review/ — structured code review with severity tiers and debug handoff
 - code-debug/ — five-step debug workflow: reproduce, isolate, hypothesize, fix, verify
-- commander: Session auditor. Run with "run Commander." Audits skills, logs misfires, updates MEMORY.md, backs up skills directory.
+- commander: Session auditor. Run with "run Commander." Audits skills, logs misfires, updates MEMORY.md. (Backup step pending removal — skills are git-tracked.)
 - checkpoint/ — mid-session status snapshot; triggered by "status check" or "checkpoint"
 - yoda/ — plain-English concept explainer; analogy first, no jargon; triggered by "yoda explain [concept]"
 - roundtable/ — end-of-session recap for Jacob; what was built, project state, next steps; triggered by "roundtable" or "session recap"
@@ -57,13 +57,12 @@ Claude API course at: ~/Desktop/AI/Claude-Api-Course
 - myth-busters/ — A/B skill evaluator; runs same prompt with/without skill, grades assertions, reports pass rate + relative length; triggered by "myth-busters", "test the skill", or "benchmark [skill]"
 - skill-namer/ — generates whimsical + serious name candidates for new skills with trigger phrases; triggered by "let's name this", "name this skill", or "what should I call this"
 - fuel-gauge/ — token usage auditor; estimates cost per skill fired, ranks by expense, surfaces efficiency recommendations; triggered by "fuel gauge", "token audit", "check the fuel gauge", or auto-runs inside Commander
-Note: roundtable v2 (prompts for handoff at end). Handoff/chat-SKILL v3 (frontmatter trigger added). Commander v8 (session-scoped audit — deep audit only for triggered skills, presence check for others; full portfolio audit moved to optimus-prime; busn4400 removed from audit list). critical v2 (trigger tightened). checkpoint v2 (jarvis collision fixed). avoid-ai-writing v3.6.0 (em dashes removed from prose; verbose sections tightened; blog profile voice note added; rewrite mode now proposes structure before writing). fuel-gauge v1.0 (new — token auditor, heuristic estimates, Commander integration). Retired: tapestry-skills/scrum-sage, tapestry-skills/session-log, busn4400 (moved to ~/.claude/skills/_retired/).
+Note: roundtable v2 (prompts for handoff at end). Handoff/chat-SKILL v3 (frontmatter trigger added). Commander v8 (session-scoped audit — deep audit only for triggered skills, presence check for others; full portfolio audit moved to optimus-prime; busn4400 removed from audit list). critical v2 (trigger tightened). checkpoint v2 (jarvis collision fixed). avoid-ai-writing v3.6.0 (em dashes removed from prose; verbose sections tightened; blog profile voice note added; rewrite mode now proposes structure before writing). fuel-gauge v1.0 (new — token auditor, heuristic estimates, Commander integration). Retired: tapestry-skills/scrum-sage, tapestry-skills/session-log, busn4400 (moved to ~/.claude/skills/_retired/), resume-tailoring (deleted — was third-party marketplace clone). 2026-04-28: ~/.claude/skills and ~/.claude/CLAUDE.md are now symlinked into ~/Desktop/AI/claude-skills/ — no copy-sync needed; git add . && commit && push is the full sync workflow.
 
 ## Handoff File Output
 
 When "generate handoff" is triggered:
 - Single file: [project-name]-handoff.md written to ~/Desktop/AI/scratch/markdown-handoffs/
-- Archive older versions to ~/Desktop/AI/scratch/markdown-handoffs/archive/ before overwriting
 - Also updates CLAUDE.md with anything that changed this session (new skills, decisions, state)
 - Skill files: ~/.claude/skills/handoff/chat-SKILL.md and ~/.claude/skills/handoff/claude-code-SKILL.md
 
