@@ -8,6 +8,14 @@ skill: verdict
 ## Purpose
 Given a set of options, evaluate tradeoffs and deliver a clear recommendation with reasoning. No hedging, no false balance — this skill produces a decision.
 
+## Proactively invoke this skill when
+- The user is weighing two or more named options and hasn't made a call yet
+- The user says "I'm not sure whether to..." or "should I use X or Y"
+- The user has laid out tradeoffs in conversation but hasn't reached a conclusion
+- The user is circling a decision — revisiting the same options more than once
+
+Do not invoke automatically — offer it: "Want me to run a verdict on this?"
+
 ## Phase 1 — Understand the Decision
 Extract from what the user provides:
 - The options being considered

@@ -8,6 +8,14 @@ skill: roundtable
 ## Purpose
 Produce a structured, human-readable end-of-session recap for Jacob — what got built, where the project stands now, and what comes next. This is for Jacob to read, not for other sessions or AI contexts. Pairs with Commander: roundtable gives the readable summary, Commander does the audit and backup.
 
+## Terse Mode
+If the user passes `--terse`, skip prose and return a compressed version only:
+- **Built:** [bulleted list, one phrase each]
+- **Stands:** [1–2 sentences max]
+- **Next:** [bulleted list, one phrase each]
+
+No section headers, no handoff offer, no explanation.
+
 ## Phase 1 — Survey the Session
 Scan the full conversation for:
 - Decisions made and things produced (files written, skills built, plans agreed on, concepts explained)
