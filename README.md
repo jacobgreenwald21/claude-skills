@@ -76,3 +76,19 @@ Utility skills and frameworks.
 | Skill | Trigger | Purpose |
 |---|---|---|
 | critical | "help me build a prompt", "design a prompt for", "let's use CRITICAL", "build me a prompt", "prompt for" | Runs the full CRITICAL framework elicitation process to build a structured, high-quality prompt for any task. |
+
+---
+
+## gstack
+
+Browser automation and shipping skills from [gstack](https://github.com/garrytan/gstack). Installed at `~/.claude/skills/gstack/` and maintained via gstack's own git — not tracked in this repo. The skills below are worth invoking explicitly. `careful`, `freeze`, and `guard` are also installed but run as automatic hook-based safety rails.
+
+| Skill | Trigger | Purpose |
+|---|---|---|
+| qa | `/qa` | Headless browser QA — navigates the live deployed URL, tests user flows end-to-end, and files bug reports with screenshots and repro steps. Run after any significant change. |
+| health | `/health` | Runs type checker, linter, and test runner against the project and returns a weighted 0–10 code quality score with trend tracking across sessions. |
+| retro | `/retro` | Weekly engineering retro — analyzes commit history, surfaces what shipped and what stalled, and tracks trends across multiple retros. |
+| ship | `/ship` | Full PR workflow in one command — VERSION bump, CHANGELOG update, commit, push, and PR creation. Cookbook repo only. |
+| document-release | `/document-release` | Post-ship doc sync — reads all project docs, cross-references the diff, and updates README, CHANGELOG, and CLAUDE.md. Cookbook repo only. |
+| review | `/review` | Adversarial code review with a chaos-engineer pass. Complement to the local `code-review` skill — use for a second opinion or full adversarial framing. |
+| browse | `/browse` | Direct headless browser control — navigate URLs, interact with elements, diff before/after, and take annotated screenshots on demand. |
