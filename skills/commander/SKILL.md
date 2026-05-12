@@ -16,7 +16,7 @@ Commander does four things every run, in this order:
 1. **Capture session scope** — ask about misfires AND which skills fired this session
 2. **Audit session-triggered skills** — deep audit only for skills that actually ran; presence check for everything else
 3. **Update MEMORY.md** — append session learnings (never overwrite)
-4. **Back up skills directory** — date-stamped backup every run
+4. **Confirm repository status** — run git status to verify repo is clean after sync
 
 > Full portfolio audit (trigger overlaps, dead weight, gap analysis across all skills) belongs to **optimus-prime**, not Commander. Commander's audit scope is session-scoped by design.
 
@@ -59,11 +59,18 @@ For each skill Jacob listed in Step 1, read its full SKILL.md and check:
 
 ### Tier 2 — Presence Check (all other installed skills)
 
-For every skill NOT in the Tier 1 list, read only the first 15 lines (frontmatter + opening section). Confirm:
-- File exists and is readable
-- `name` field is present
-- Trigger phrase is still defined
-- No obvious corruption or empty body
+For every skill NOT in the Tier 1 list, first check whether the file has changed since the last commit:
+
+```bash
+git -C ~/Desktop/AI/claude-skills status --short skills/[skill-name]/SKILL.md
+```
+
+- If output is **empty** (no changes since last commit): mark ✓ present (unchanged) and skip reading the file.
+- If output shows **modified or untracked**: read the first 15 lines (frontmatter + opening section) and confirm:
+  - File exists and is readable
+  - `name` field is present
+  - Trigger phrase is still defined
+  - No obvious corruption or empty body
 
 Presence check does NOT evaluate quality, conflicts, or stale references — that's optimus-prime's job.
 
@@ -116,7 +123,11 @@ After the report, ask:
 
 Wait for response before proceeding.
 
-After applying any fixes, sync to GitHub. Skills and CLAUDE.md are symlinked into the repo — no copying needed. If any skill's trigger, purpose, or behavior changed in a user-visible way, update `~/Desktop/AI/claude-skills/README.md` first, then:
+After applying any fixes, automatically check both files before syncing — no approval needed:
+- Read `~/.claude/CLAUDE.md` and check if any skill changes from this session are reflected. If not, update it now.
+- Read `~/Desktop/AI/claude-skills/README.md` and check if any skill's trigger, purpose, or behavior changed. If so, update it now.
+
+Then sync to GitHub:
 
 ```bash
 git -C ~/Desktop/AI/claude-skills add .
@@ -178,23 +189,21 @@ Also update MEMORY.md in `~/.claude/projects/-Users-jacob/memory/` to include a 
 
 ---
 
-## Step 4 — Back Up Skills Directory
+## Step 4 — Confirm Repository Status
 
-Run every time Commander executes, regardless of whether issues were found.
-
-Target: `~/Desktop/AI/scratch/skills-backup/`
-
-Command:
+Run every time Commander executes after the sync step.
 
 ```bash
-cp -r ~/.claude/skills/ ~/Desktop/AI/scratch/skills-backup/skills-$(date +%Y-%m-%d)/
+git -C ~/Desktop/AI/claude-skills status
 ```
 
-Confirm backup completed:
+Report the result:
 
 ```
-✓ Backup saved to ~/Desktop/AI/scratch/skills-backup/skills-[DATE]/
+✓ Repository clean — all changes committed and pushed
 ```
+
+If there are uncommitted changes, flag them and ask Jacob whether to stage and commit before closing.
 
 ---
 
@@ -210,7 +219,7 @@ Skills presence-checked: N
 Deep audit issues: N | Presence failures: N
 Misfires logged: N
 MEMORY.md updated: ✓
-Backup saved: ✓ skills-[DATE]
+Repo status: ✓ clean
 
 [If issues were flagged and Jacob chose to rebuild: list what was rebuilt]
 [If no issues: "Ecosystem looks clean."]
@@ -233,8 +242,9 @@ When this trigger fires, run the following sequence in order. Complete each step
 3. **Commander audit** — run the full Commander sequence: session scope capture → session-scoped skill audit → MEMORY.md update → backup.
 
 4. **GitHub sync** — skills and CLAUDE.md are symlinked into the repo, so no copying needed:
-   1. Update `~/Desktop/AI/claude-skills/README.md` if any skill's trigger, purpose, or behavior changed
-   2. Stage everything: `git -C ~/Desktop/AI/claude-skills add .`
+   1. Automatically check if CLAUDE.md needs content updates from this session (new skills, decisions, state changes). If so, update it now — no approval needed.
+   2. Automatically check if README.md needs updates for any skill whose trigger, purpose, or behavior changed. If so, update it now — no approval needed.
+   3. Stage everything: `git -C ~/Desktop/AI/claude-skills add .`
 
    Prompt Jacob: "Ready to push updates to GitHub. Confirm?"
    - On confirmation: `git -C ~/Desktop/AI/claude-skills commit -m "session sync [DATE]" && git -C ~/Desktop/AI/claude-skills push origin main`
