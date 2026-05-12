@@ -107,3 +107,4 @@ Chat only. No files written. Both runs are shown inline so results are immediate
 - Keep assertions to 4–7 — more than that dilutes the signal
 - The WITHOUT SKILL run must genuinely ignore the SKILL.md — do not let skill knowledge bleed through
 - The verdict must name specific failing assertions if any exist, not just report the score
+- When uncertain whether an assertion passes, default to FAIL and note the ambiguity — do not silently round up to a pass

@@ -58,6 +58,7 @@ For each chunk (or full scope if small):
 - Announce: "Reviewing [chunk name]..." before starting
 - Run all six check categories in priority order
 - Collect every finding before writing output
+- Before suggesting any fix that changes a function signature, exported interface, or shared type, read at least one caller to confirm the fix won't break call sites
 
 ### Phase 3 — Adversarial Pass
 Re-read the code from an adversarial frame:

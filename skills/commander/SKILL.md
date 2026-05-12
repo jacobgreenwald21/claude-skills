@@ -275,3 +275,4 @@ If Jacob says something like "that output was wrong, log it" at any point during
 - Claude Code only — this skill requires filesystem access
 - Tier 1 deep audit only runs for skills Jacob confirms were triggered this session
 - Full portfolio audit (cross-skill patterns, dead weight, gaps) → optimus-prime, not Commander
+- If a Tier 1 finding is ambiguous (e.g., a stale reference that may still exist), flag it as uncertain rather than marking it as a confirmed issue

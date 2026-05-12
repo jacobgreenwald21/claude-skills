@@ -69,3 +69,4 @@ Keep the full output under 300 words. This lives inside Commander's report — d
 - Do not invent recommendations — only flag real patterns visible in the session context
 - Never recommend retiring a skill based on one session's data alone; flag for monitoring instead
 - Keep output compact — this is a section inside Commander, not a standalone report
+- If session total estimate exceeds 500K tokens, halt recommendations and output only: "⚠ HIGH BURN — run handoff before continuing. Do not compact context."

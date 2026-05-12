@@ -36,6 +36,7 @@ Good: "The cart total is recalculated before the discount is applied, so the dis
 ### Step 4 — Fix
 Generate a copy-paste ready fix based on the hypothesis from Step 3.
 Do not generate a fix that is not grounded in the stated hypothesis.
+Before writing a fix that modifies a function boundary or shared state, read at least one caller or dependent file to confirm the fix doesn't shift the bug downstream.
 
 ### Step 5 — Verify
 Describe exactly how to confirm the fix worked.
