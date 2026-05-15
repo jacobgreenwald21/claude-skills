@@ -47,21 +47,35 @@ Each assertion must be binary — pass or fail. Write them as explicit yes/no ch
 
 Add any extra assertions Jacob provided. Aim for 4–7 total assertions. More than that and the evaluation loses signal.
 
-## Phase 3 — Run With Skill
-Using the test prompt, produce the response as if the skill is fully active:
-- Follow the SKILL.md phase by phase
-- Adhere to all output format and guardrail requirements
-- Label this output clearly: **[WITH SKILL]**
+## Phase 3 & 4 — Run Both Conditions in Parallel
 
-Note approximate response length (word count or paragraph count — consistent metric).
+Once assertions are finalized, fire two agents simultaneously using the Agent tool. Both calls must be made in the same response before waiting for either to return.
 
-## Phase 4 — Run Without Skill
-Using the exact same test prompt, produce a plain response:
-- Deliberately ignore the SKILL.md entirely
-- Respond as Claude would by default with no skill context
-- Label this output clearly: **[WITHOUT SKILL]**
+**Agent A — WITH SKILL**
 
-Note approximate response length using the same metric as Phase 3.
+Prompt:
+"You are Claude responding to a user prompt. Follow this skill definition exactly, phase by phase, including all output format and guardrail requirements:
+
+---
+[paste full SKILL.md content of the target skill]
+---
+
+Respond to this prompt following the skill:
+[test prompt]
+
+Label your entire response [WITH SKILL]. At the end, note the approximate word count."
+
+**Agent B — WITHOUT SKILL**
+
+Prompt:
+"You are Claude responding to a user prompt. You have no special skills, frameworks, or structured workflows active. Do not follow any phases, templates, or output formats. Respond naturally and directly, as you would by default with no system prompt or skill context.
+
+Respond to this prompt:
+[test prompt]
+
+Label your entire response [WITHOUT SKILL]. At the end, note the approximate word count."
+
+Collect both results when they return. If one agent fails or errors, produce that run sequentially in the main session and note the fallback in the report.
 
 ## Phase 5 — Grade Both Runs
 For each assertion, evaluate both the WITH and WITHOUT responses independently.
@@ -105,6 +119,6 @@ Chat only. No files written. Both runs are shown inline so results are immediate
 - Never grade holistically — every assertion must have an explicit PASS or FAIL with a reason
 - Never use vague assertions like "output is good" — each assertion must be binary and testable
 - Keep assertions to 4–7 — more than that dilutes the signal
-- The WITHOUT SKILL run must genuinely ignore the SKILL.md — do not let skill knowledge bleed through
+- The WITHOUT SKILL agent must receive only the test prompt — never pass it the SKILL.md content or any skill context (contamination is structurally prevented by the separate context window, not by self-discipline)
 - The verdict must name specific failing assertions if any exist, not just report the score
 - When uncertain whether an assertion passes, default to FAIL and note the ambiguity — do not silently round up to a pass
