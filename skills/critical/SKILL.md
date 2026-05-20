@@ -31,7 +31,8 @@ Minimum questions per component:
 - I: What is the ultimate goal — what does success look like?
 - T: What exactly should the AI produce or do?
 - I: What constraints, rules, or guardrails apply?
-- C: What format, structure, or elements must the output contain?
+- C: What format should the output take (markdown, table, JSON, prose, bullets)?
+- C: What sections, fields, or elements must the output include?
 - A: Who will use this output? What tone and complexity level?
 - L: Should the AI explain its reasoning or offer alternatives?
 
