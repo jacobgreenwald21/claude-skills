@@ -1,5 +1,12 @@
 archive/
 
+# OS / editor junk
+.DS_Store
+
+# Python bytecode cache (xlsx skill's bundled scripts)
+__pycache__/
+*.pyc
+
 # gstack skills — maintained by gstack's own git repo, not tracked here
 skills/gstack/
 skills/gstack-upgrade/
