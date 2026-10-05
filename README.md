@@ -79,6 +79,17 @@ Utility skills and frameworks.
 
 ---
 
+## Agentic loops
+
+Design and stress-test autonomous multi-turn work. From the "Loops for Knowledge Workers" webinar (AIDB × Superintelligent × Nufar Gaspar, Aug 2026) — third-party, tracked here. Reference material and the token-efficiency playbook live at `~/Desktop/AI/reference/agentic-loops/`.
+
+| Skill | Trigger | Purpose |
+|---|---|---|
+| goal-designer | "design a goal", "set up a loop", "design a loop for..." | Interviews on a recurring task, builds a Goal Card with machine-checkable finish-line criteria and cost caps, then fires the loop or hands back the `/goal` command. Refuses vague finish lines and non-convergent tasks. |
+| graph-designer | "do I need a graph", "split this across agents", "stress-test my loop", "org graph" | Stress-tests whether a loop should become a multi-agent work graph or standing org graph. Defaults to "stay a loop"; when a split is justified, delivers a build-ready spec (diagram, node cards, edge contracts, human gate). |
+
+---
+
 ## gstack
 
 Browser automation and shipping skills from [gstack](https://github.com/garrytan/gstack). Installed at `~/.claude/skills/gstack/` and maintained via gstack's own git — not tracked in this repo. The skills below are worth invoking explicitly. `careful`, `freeze`, and `guard` are also installed but run as automatic hook-based safety rails.
