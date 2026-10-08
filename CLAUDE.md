@@ -1,35 +1,14 @@
 # Jacob — Global Context for Claude Code
 
-## Who I Am
+## Personal Context
 
-UGA senior, last semester before graduating. Day-to-day involves classwork, running a golf tournament (wrapping up), and actively learning and experimenting with AI.
+Canonical source: ~/Desktop/AI/claude-skills/context/ — edit there, not here.
 
-Primary goal: land a full-time Business Analyst role at McKinsey & Company immediately out of college. Already in contact with people at several firms — McKinsey is the clear priority. If I ended up at a boutique, my strengths align best with AI/tech/data work, though my genuine interest is in patient-side medical administration — helping hospitals and health systems operate more efficiently.
+@~/Desktop/AI/claude-skills/context/about-me.md
+@~/Desktop/AI/claude-skills/context/voice.md
+@~/Desktop/AI/claude-skills/context/working-preferences.md
 
-Things I have built or led: a personal AI-powered cookbook website designed and built from scratch, an annual golf tournament I plan and run, and a spring break trip where I planned and led four people on an RV road trip through national parks.
-
-I am quantitative, like being challenged, and prefer direct and efficient ways of learning. I am further along in understanding and experimenting with AI than most people my age. My interest in tech is more that I am good at it than that I find it consistently interesting — I engage with it when it serves a real purpose.
-
-## My Writing Voice
-
-Analytical and moderately casual — close to how I would articulate something in person if I were being clear and direct. Does not sound corporate, overly polished, or AI-generated.
-
-Tone: straightforward, grounded, confident without being stiff. No filler phrases, excessive hedging, or language that sounds like it came from a template.
-
-Format: mix of short prose and bullet points where bullets genuinely help. Concise — nothing padded. Avoid formatting things as formal headers. If a section needs a label, it should read like normal text, not a bold title.
-
-When producing written work on my behalf, match this voice. Do not default to formal business writing unless the context explicitly requires it.
-
-## Working Preferences
-
-- Before starting any task, confirm we have a shared plan and that I agree with the approach
-- Stay within the scope of what we agreed on — do not expand the task without checking first
-- Never edit, delete, move, or manipulate any files without explicit permission that is part of the agreed plan
-- Default output format is PDF when possible
-- Response length does not matter as long as content is substantive — do not pad
-- When I ask for something to be copy-ready, return only the exact text with nothing else — no lead-in, no explanation
-- Ask clarifying questions before executing if anything is ambiguous
-- Show a brief plan before taking action on anything consequential
+Not auto-loaded: ~/Desktop/AI/claude-skills/context/decision-log.md — read it when verdict or jarvis fires, or when helping me make a decision.
 
 ## My Claude Ecosystem
 
@@ -37,7 +16,7 @@ Five active Claude.ai Projects: Test Prep, Cookbook, Prompt Engineering, Systems
 
 Skills live at: ~/.claude/skills/
 Canonical skill repo (GitHub-backed): ~/Desktop/AI/claude-skills/ — git@github.com:jacobgreenwald21/claude-skills.git
-Cowork context files at: ~/Desktop/AI/CLAUDE COWORK/CONTEXT/
+Personal context files (canonical, used by Claude Code, Cowork, and Claude.ai Projects): ~/Desktop/AI/claude-skills/context/
 Claude API course at: ~/Desktop/AI/Claude-Api-Course
 
 ## Skill Portfolio (Current)
