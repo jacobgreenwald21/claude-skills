@@ -2,6 +2,13 @@
 
 Session-level change history for the skill ecosystem, newest first. Handoff and Commander append here instead of CLAUDE.md, which loads on every turn. The skill portfolio itself lives in README.md.
 
+## 2026-10-21
+
+- Descriptions rewritten for code-debug (v4), code-review (v4), skill-builder (v6): each now states what the skill does, keeps all prior trigger phrases, adds a few, and names what not to use it for. code-review's proactive-offer guidance moved into the description (body text is invisible until a skill fires). skill-builder now also triggers on tuning existing skills. Previous versions archived as SKILL-v3 / SKILL-v3 / SKILL-v5.
+- skill-builder body (v7, previous archived as SKILL-v6): Phase 2 now requires `name:` + `description:` frontmatter (what it does → triggers → exclusions, ≤1,536 chars) and puts all trigger guidance in the description — likely root cause of the 12-skill `trigger:` bug. Phase 1 gains a tuning mode (read the existing SKILL.md, ask only what it leaves open). Phase 5 tests in a new tab instead of restarting. Guardrails log to CHANGELOG.md instead of CLAUDE.md, drop the obsolete category-folder copy step, and add the agentic-loops README category.
+- gstack `review` set to user-invocable-only so the local code-review is the only auto-triggering code reviewer; `/review` still works manually.
+- `skills/synced/` and `skills/.trash/` untracked and gitignored (managed by Claude Code / claude.ai sync).
+
 ## 2026-10-20
 
 - Frontmatter fixed on 12 skills (checkpoint, code-debug, code-review, critical, jarvis, myth-busters, optimus-prime, roundtable, skill-builder, skill-namer, verdict, yoda): `trigger:` renamed to `description:`, `name:` added, non-standard `skill:` key dropped. Claude Code had been ignoring `trigger:` and listing these by their H1 title, so they could not auto-trigger. Trigger text unchanged.

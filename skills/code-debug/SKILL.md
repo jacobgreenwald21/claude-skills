@@ -1,6 +1,6 @@
 ---
 name: code-debug
-description: "debug this, run debug, code debug, debug the bug, debug this issue, debug this error, run a debug"
+description: "Fix a specific bug with a strict five-step workflow: reproduce, isolate, hypothesize root cause, fix, verify. Use when Jacob reports an error, stack trace, or something that stopped working, or hands off a 🔴 block from code-review. Trigger phrases: 'debug this', 'run debug', 'code debug', 'debug the bug', 'debug this issue', 'debug this error', 'run a debug', 'why is this broken', 'fix this bug'. Do NOT use for reviewing code that isn't known to be broken (use code-review)."
 ---
 
 # Code Debug Skill

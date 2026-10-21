@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: "review the code, code review, review this code, do a code review, review my code, run a code review, can you review the code"
+description: "Structured code review of a file, folder, feature, pasted code, or branch diff: findings ranked 🔴 Critical / 🟡 Warning / 🔵 Note with copy-paste fixes, a required adversarial pass, a ship/hold verdict, and handoff blocks to code-debug. Supports --terse. Jacob's default for any 'code review' request. Trigger phrases: 'review the code', 'code review', 'review this code', 'do a code review', 'review my code', 'run a code review', 'can you review the code'. Also offer it (don't start it) when Jacob pastes code without a request, asks 'does this look right?', or says something is ready to merge or ship. Do NOT use for a known bug (use code-debug)."
 ---
 
 # Code Review Skill

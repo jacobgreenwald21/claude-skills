@@ -14,7 +14,7 @@ Skills that manage, evaluate, or build other skills.
 | fuel-gauge | "fuel gauge", "token audit", "check context usage", "check the fuel gauge" | Heuristic token usage auditor — estimates cost per skill fired, ranks by expense, surfaces efficiency recommendations and chain opportunities. Auto-runs inside Commander. |
 | optimus-prime | "optimus-prime", "optimus", "autobots roll out", "cross-skill review", "skill system audit" | Holistic cross-skill analysis — finds trigger overlaps, underused skills, and systemic gaps across the full portfolio. |
 | myth-busters | "myth-busters", "test the skill", "benchmark [skill name]", "run myth-busters on [skill]" | Runs an A/B evaluation of a specific skill — transcript-aware scoping, binary assertion grading, and a pass rate comparison. |
-| skill-builder | "build a new skill", "create a skill", "I want a skill that", "add a skill for", "new skill for", "skill that does" | Interviews on intent, drafts a new SKILL.md, archives before every write, runs test cases, tunes the trigger, and iterates until the skill works correctly. |
+| skill-builder | "build a new skill", "create a skill", "I want a skill that", "tune the [skill] skill", "tune the descriptions for", "fix this skill", "this skill isn't triggering" | Builds new skills or tunes existing ones — interviews on intent, drafts SKILL.md, archives before every write, runs test cases, tunes the trigger, and iterates until the skill works correctly. |
 | skill-namer | "let's name this", "name this skill", "what should I call this", "help me name this", "skill name ideas" | Generates 3–5 whimsical name candidates plus 1–2 serious alternatives for new skills, each with trigger phrases styled after the existing portfolio. |
 | jarvis | "jarvis", "I'm stuck", "what's next", "what should I work on", "next move" | Surfaces 3 specific short-term ideas and 1 directional long-term idea based on session and memory context. |
 | handoff (chat) | "generate handoff" *(chat sessions only)* | Generates two handoff markdown files — a context file and a dev instructions file — presented as downloadable outputs at session end. |
@@ -28,8 +28,8 @@ Skills for reviewing and debugging code.
 
 | Skill | Trigger | Purpose |
 |---|---|---|
-| code-review | "review the code", "code review", "review this code", "do a code review", "run a code review" | Structured, prioritized code review with severity tiers and copy-paste-ready fixes. |
-| code-debug | "debug this", "run debug", "code debug", "debug the bug", "debug this error" | Five-step debug workflow — reproduce, isolate, hypothesize, fix, verify — with strict step ordering. |
+| code-review | "review the code", "code review", "review this code", "do a code review", "run a code review"; offered when code is pasted or "ready to merge" | Default code review — severity tiers, copy-paste-ready fixes, required adversarial pass, ship/hold verdict, handoff to code-debug. |
+| code-debug | "debug this", "run debug", "code debug", "debug this error", "why is this broken", "fix this bug" | Five-step debug workflow — reproduce, isolate, hypothesize, fix, verify — with strict step ordering. |
 
 ---
 
@@ -101,5 +101,5 @@ Browser automation and shipping skills from [gstack](https://github.com/garrytan
 | retro | `/retro` | Weekly engineering retro — analyzes commit history, surfaces what shipped and what stalled, and tracks trends across multiple retros. |
 | ship | `/ship` | Full PR workflow in one command — VERSION bump, CHANGELOG update, commit, push, and PR creation. Cookbook repo only. |
 | document-release | `/document-release` | Post-ship doc sync — reads all project docs, cross-references the diff, and updates README, CHANGELOG, and CLAUDE.md. Cookbook repo only. |
-| review | `/review` | Adversarial code review with a chaos-engineer pass. Complement to the local `code-review` skill — use for a second opinion or full adversarial framing. |
+| review | `/review` (manual only — user-invocable-only) | Pre-landing PR diff review. Complement to the local `code-review` skill, which is the auto-triggering default — type `/review` for a second opinion before merging. |
 | browse | `/browse` | Direct headless browser control — navigate URLs, interact with elements, diff before/after, and take annotated screenshots on demand. |
