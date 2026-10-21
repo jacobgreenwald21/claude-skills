@@ -1,5 +1,12 @@
+---
+name: handoff
+description: "Use this skill when Jacob says 'generate handoff' at the end of a Claude Code session. Writes a single [project-name]-handoff.md to ~/Desktop/AI/scratch/markdown-handoffs/ from real git and file state, logs session changes to the claude-skills CHANGELOG.md/README.md, and syncs the repo. Do NOT trigger for mid-session status (use checkpoint) or a readable recap (use roundtable)."
+---
+
 # Handoff Skill — Claude Code Version
 *For use in Claude Code inside VS Code*
+
+Skill files: `~/.claude/skills/handoff/claude-code-SKILL.md` (this version; SKILL.md is the loaded copy and must stay identical) and `~/.claude/skills/handoff/chat-SKILL.md` (Claude.ai version).
 
 ---
 
@@ -62,37 +69,34 @@ DATE=$(date +%Y-%m-%d)
 
 ---
 
-## Step 3 — Update CLAUDE.md
+## Step 3 — Log Session Changes
 
-Read `~/.claude/CLAUDE.md`. Based on the session history, identify anything that changed that affects persistent context:
-- New skills added or removed
-- Stack or tool decisions made
-- Project state changes (milestones completed, features shipped)
-- New file locations or paths that matter long-term
-- Anything that would affect how a future session should behave
+CLAUDE.md loads on every turn, so history written there costs tokens forever. Route each change from this session by type:
+- **Change history** (skill versions, what changed and why, decisions made, project milestones) → add a dated entry at the top of `~/Desktop/AI/claude-skills/CHANGELOG.md`. Reuse today's entry if one exists.
+- **Skill portfolio** (skill added, removed, renamed, or its trigger/purpose changed) → update the matching table row in `~/Desktop/AI/claude-skills/README.md`.
+- **Durable directives** (a rule every future session must follow, a path every session needs) → targeted edit to `~/.claude/CLAUDE.md`. This should be rare. Never add skill lists or version notes there — each skill's description already loads from its SKILL.md.
 
-Make targeted edits only — surgical updates to the relevant lines or sections. Never rewrite CLAUDE.md from scratch.
+Make targeted edits only. Never rewrite any of these files from scratch.
 
 Confirm what was changed before proceeding:
-> "Updated CLAUDE.md: [list of specific changes, or 'no changes needed']"
+> "Logged: CHANGELOG [entries added] · README [changes or 'none'] · CLAUDE.md [changes or 'none']"
 
 ---
 
 ## Step 4 — Sync to GitHub
 
-Copy the updated CLAUDE.md to the canonical skill repo and push:
+`~/.claude/CLAUDE.md` and `~/.claude/skills/` are symlinked into the repo, so no copying is needed:
 
 ```bash
-cp ~/.claude/CLAUDE.md ~/Desktop/AI/claude-skills/CLAUDE.md
 cd ~/Desktop/AI/claude-skills
-git add CLAUDE.md
+git add CLAUDE.md CHANGELOG.md README.md
 git commit -m "session sync $(date +%Y-%m-%d)"
 git push origin main
 ```
 
-If any SKILL.md files were edited this session, copy those to their category folders first and stage them alongside CLAUDE.md before committing.
+If any SKILL.md files were edited this session, stage them alongside before committing.
 
-Confirm: "GitHub synced — CLAUDE.md pushed to origin/main."
+Confirm: "GitHub synced — pushed to origin/main."
 
 ---
 

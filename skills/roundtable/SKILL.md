@@ -1,6 +1,6 @@
 ---
-trigger: "Use this skill when the user wants an end-of-session recap for themselves — a readable summary of what was built, where the project stands, and what comes next. Trigger phrases include: 'roundtable', 'session recap', 'gather the table', 'wrap up the session', 'end of session summary', 'recap the session'. Do NOT trigger for mid-session status checks (use checkpoint instead), and do NOT trigger for handoff file generation (different skill, different purpose)."
-skill: roundtable
+name: roundtable
+description: "Use this skill when the user wants an end-of-session recap for themselves — a readable summary of what was built, where the project stands, and what comes next. Trigger phrases include: 'roundtable', 'session recap', 'gather the table', 'wrap up the session', 'end of session summary', 'recap the session'. Do NOT trigger for mid-session status checks (use checkpoint instead), and do NOT trigger for handoff file generation (different skill, different purpose)."
 ---
 
 # Roundtable Skill

@@ -1,6 +1,6 @@
 ---
-trigger: "Use this skill when the user wants decision support — evaluating options, weighing tradeoffs, and getting a clear recommendation with reasoning. Trigger phrases include: 'what's the verdict on [X]', 'help me decide between [X] and [Y]', 'make the call on [X]', 'verdict: [options]', 'which should I use [X] or [Y]', 'help me choose between'. Use for tool, approach, architecture, or similar decisions. Do NOT trigger for open-ended brainstorming, general research, or requests that don't involve choosing between defined options."
-skill: verdict
+name: verdict
+description: "Use this skill when the user wants decision support — evaluating options, weighing tradeoffs, and getting a clear recommendation with reasoning. Trigger phrases include: 'what's the verdict on [X]', 'help me decide between [X] and [Y]', 'make the call on [X]', 'verdict: [options]', 'which should I use [X] or [Y]', 'help me choose between'. Use for tool, approach, architecture, or similar decisions. Do NOT trigger for open-ended brainstorming, general research, or requests that don't involve choosing between defined options."
 ---
 
 # Verdict Skill

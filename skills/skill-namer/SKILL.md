@@ -1,6 +1,6 @@
 ---
-trigger: "Use this skill when Jacob wants to generate name options for a new skill. Trigger phrases include: 'let's name this', 'name this skill', 'what should I call this', 'help me name this', 'skill name ideas', 'generate names for this skill'. Can also be invoked from within skill-builder during the naming step. Do NOT trigger for general naming tasks outside the skill ecosystem (e.g., naming a variable, naming a project, naming a file)."
-skill: skill-namer
+name: skill-namer
+description: "Use this skill when Jacob wants to generate name options for a new skill. Trigger phrases include: 'let's name this', 'name this skill', 'what should I call this', 'help me name this', 'skill name ideas', 'generate names for this skill'. Can also be invoked from within skill-builder during the naming step. Do NOT trigger for general naming tasks outside the skill ecosystem (e.g., naming a variable, naming a project, naming a file)."
 ---
 
 # Skill-Namer Skill

@@ -1,5 +1,6 @@
 ---
-trigger: "build a new skill, create a skill, I want a skill that, add a skill for, new skill for, skill that does"
+name: skill-builder
+description: "build a new skill, create a skill, I want a skill that, add a skill for, new skill for, skill that does"
 ---
 
 # Skill-Builder Skill

@@ -1,6 +1,6 @@
 ---
-trigger: "Use this skill when the user wants to evaluate a specific skill's performance — comparing output with vs. without the skill loaded, grading against assertions, and reporting pass rates. Trigger phrases include: 'myth-busters', 'test the skill', 'benchmark [skill name]', 'run myth-busters on [skill]', 'evaluate the [skill] skill'. Use after building a new skill or when a skill feels like it's underperforming. Do NOT trigger for general skill audits (use Commander or optimus-prime instead) — this skill requires a specific target skill and test prompt."
-skill: myth-busters
+name: myth-busters
+description: "Use this skill when the user wants to evaluate a specific skill's performance — comparing output with vs. without the skill loaded, grading against assertions, and reporting pass rates. Trigger phrases include: 'myth-busters', 'test the skill', 'benchmark [skill name]', 'run myth-busters on [skill]', 'evaluate the [skill] skill'. Use after building a new skill or when a skill feels like it's underperforming. Do NOT trigger for general skill audits (use Commander or optimus-prime instead) — this skill requires a specific target skill and test prompt."
 ---
 
 # Myth-Busters Skill

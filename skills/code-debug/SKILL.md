@@ -1,5 +1,6 @@
 ---
-trigger: "debug this, run debug, code debug, debug the bug, debug this issue, debug this error, run a debug"
+name: code-debug
+description: "debug this, run debug, code debug, debug the bug, debug this issue, debug this error, run a debug"
 ---
 
 # Code Debug Skill

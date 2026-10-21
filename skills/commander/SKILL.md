@@ -124,7 +124,7 @@ After the report, ask:
 Wait for response before proceeding.
 
 After applying any fixes, automatically check both files before syncing — no approval needed:
-- Read `~/.claude/CLAUDE.md` and check if any skill changes from this session are reflected. If not, update it now.
+- Add this session's skill changes as a dated entry at the top of `~/Desktop/AI/claude-skills/CHANGELOG.md` (reuse today's entry if one exists). Do not write change history or skill lists into `~/.claude/CLAUDE.md` — it loads every turn; edit it only for a new durable directive.
 - Read `~/Desktop/AI/claude-skills/README.md` and check if any skill's trigger, purpose, or behavior changed. If so, update it now.
 
 Then sync to GitHub:
@@ -242,7 +242,7 @@ When this trigger fires, run the following sequence in order. Complete each step
 3. **Commander audit** — run the full Commander sequence: session scope capture → session-scoped skill audit → MEMORY.md update → backup.
 
 4. **GitHub sync** — skills and CLAUDE.md are symlinked into the repo, so no copying needed:
-   1. Automatically check if CLAUDE.md needs content updates from this session (new skills, decisions, state changes). If so, update it now — no approval needed.
+   1. Automatically log this session's changes (new skills, decisions, state changes) as a dated entry at the top of `~/Desktop/AI/claude-skills/CHANGELOG.md` — no approval needed. Touch CLAUDE.md only for a new durable directive; never add change history or skill lists there.
    2. Automatically check if README.md needs updates for any skill whose trigger, purpose, or behavior changed. If so, update it now — no approval needed.
    3. Stage everything: `git -C ~/Desktop/AI/claude-skills add .`
 

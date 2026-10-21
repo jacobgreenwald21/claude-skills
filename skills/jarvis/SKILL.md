@@ -1,6 +1,6 @@
 ---
-trigger: "Use this skill when the user is stuck, out of ideas, or wants proactive suggestions for what to work on next. Trigger phrases include: 'jarvis', 'I'm stuck', 'what's next', 'what should I work on', 'jarvis what do you think', 'next move'. This is a manually triggered skill — do NOT auto-fire it. Do not trigger for general questions or tasks that already have a clear direction."
-skill: jarvis
+name: jarvis
+description: "Use this skill when the user is stuck, out of ideas, or wants proactive suggestions for what to work on next. Trigger phrases include: 'jarvis', 'I'm stuck', 'what's next', 'what should I work on', 'jarvis what do you think', 'next move'. This is a manually triggered skill — do NOT auto-fire it. Do not trigger for general questions or tasks that already have a clear direction."
 ---
 
 # Jarvis Skill

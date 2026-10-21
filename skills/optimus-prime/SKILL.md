@@ -1,6 +1,6 @@
 ---
-trigger: "Use this skill when the user wants a holistic cross-skill analysis — looking for patterns, overlaps, dead weight, and systemic gaps across the entire skill portfolio. Trigger phrases include: 'optimus-prime', 'optimus', 'autobots roll out', 'cross-skill review', 'skill system audit'. Do NOT trigger for individual skill audits (use Commander instead) or for building new skills (use skill-builder). This is a system-level review, not a single-skill review."
-skill: optimus-prime
+name: optimus-prime
+description: "Use this skill when the user wants a holistic cross-skill analysis — looking for patterns, overlaps, dead weight, and systemic gaps across the entire skill portfolio. Trigger phrases include: 'optimus-prime', 'optimus', 'autobots roll out', 'cross-skill review', 'skill system audit'. Do NOT trigger for individual skill audits (use Commander instead) or for building new skills (use skill-builder). This is a system-level review, not a single-skill review."
 ---
 
 # Optimus Prime Skill

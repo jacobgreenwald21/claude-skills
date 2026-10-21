@@ -1,6 +1,6 @@
 ---
-trigger: "Use this skill when the user asks Claude to explain a concept in plain English using an analogy-first approach. Trigger phrases include: 'yoda explain [concept]', 'yoda [concept]', 'explain [concept] yoda-style', 'yoda mode', 'yoda: [concept]'. Do NOT trigger for general explanation requests that don't include 'yoda' or an explicit analogy-first framing."
-skill: yoda
+name: yoda
+description: "Use this skill when the user asks Claude to explain a concept in plain English using an analogy-first approach. Trigger phrases include: 'yoda explain [concept]', 'yoda [concept]', 'explain [concept] yoda-style', 'yoda mode', 'yoda: [concept]'. Do NOT trigger for general explanation requests that don't include 'yoda' or an explicit analogy-first framing."
 ---
 
 # Yoda Skill

@@ -1,5 +1,6 @@
 ---
-trigger: "review the code, code review, review this code, do a code review, review my code, run a code review, can you review the code"
+name: code-review
+description: "review the code, code review, review this code, do a code review, review my code, run a code review, can you review the code"
 ---
 
 # Code Review Skill
