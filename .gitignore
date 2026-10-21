@@ -7,6 +7,10 @@ archive/
 __pycache__/
 *.pyc
 
+# claude.ai-synced skills and Claude Code's skill trash — re-downloaded/managed by Claude Code, source of truth is claude.ai
+skills/synced/
+skills/.trash/
+
 # gstack skills — maintained by gstack's own git repo, not tracked here
 skills/gstack/
 skills/gstack-upgrade/
