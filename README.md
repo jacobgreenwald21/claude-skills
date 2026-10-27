@@ -10,7 +10,7 @@ Skills that manage, evaluate, or build other skills.
 
 | Skill | Trigger | Purpose |
 |---|---|---|
-| commander | "run Commander" | Session auditor — captures misfires, session-scoped skill audit, reads and clears open-items.md, updates MEMORY.md, and runs end-of-session chain (includes fuel-gauge). Skills are git-tracked; backup step being deprecated. |
+| commander | "run Commander"; full chain on "wrap up", "wrap it up", "end session", "close out" | Session auditor — captures misfires, session-scoped skill audit, reads and clears open-items.md, updates MEMORY.md, logs to CHANGELOG.md. "Wrap up" runs the full chain: roundtable → fuel-gauge → Commander → GitHub sync → jarvis. |
 | fuel-gauge | "fuel gauge", "token audit", "check context usage", "check the fuel gauge" | Heuristic token usage auditor — estimates cost per skill fired, ranks by expense, surfaces efficiency recommendations and chain opportunities. Auto-runs inside Commander. |
 | optimus-prime | "optimus-prime", "optimus", "autobots roll out", "cross-skill review", "skill system audit" | Holistic cross-skill analysis — finds trigger overlaps, underused skills, and systemic gaps across the full portfolio. |
 | myth-busters | "myth-busters", "test the skill", "benchmark [skill name]", "run myth-busters on [skill]" | Runs an A/B evaluation of a specific skill — transcript-aware scoping, binary assertion grading, and a pass rate comparison. |
@@ -50,7 +50,7 @@ Skills that manage session flow, orientation, and decisions.
 | Skill | Trigger | Purpose |
 |---|---|---|
 | checkpoint | "status check", "checkpoint", "where are we", "what's left", "quick status", "catch me up" | Produces a structured mid-session snapshot — what's done, what's in progress, and what comes next. |
-| roundtable | "roundtable", "session recap", "gather the table", "wrap up the session", "end of session summary" | End-of-session readable summary of what was built, where the project stands, and what comes next. |
+| roundtable | "roundtable", "session recap", "gather the table", "end of session summary" (not "wrap up" — that runs Commander's full chain) | End-of-session readable summary of what was built, where the project stands, and what comes next. |
 | verdict | "what's the verdict on [X]", "help me decide between [X] and [Y]", "make the call on [X]", "help me choose between" | Evaluates options, weighs tradeoffs, and delivers a clear recommendation with reasoning — no hedging. |
 | yoda | "yoda explain [concept]", "yoda [concept]", "explain [concept] yoda-style", "yoda mode", "yoda: [concept]" | Explains any concept with a plain-English analogy first, then builds to accurate detail — no jargon. |
 

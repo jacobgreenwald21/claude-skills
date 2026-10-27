@@ -1,9 +1,9 @@
 ---
 name: commander
-description: Session auditor and self-improvement loop for Jacob's Claude Code skill ecosystem. Trigger this skill whenever Jacob says "run Commander." Responsibilities: capture misfires and session-triggered skills, audit only skills that fired (session-scoped), update MEMORY.md with session learnings, and back up the skills directory. Claude Code only — requires filesystem access. Do NOT trigger automatically; only fires on explicit "run Commander" call.
+description: Session auditor and self-improvement loop for Jacob's Claude Code skill ecosystem. Trigger this skill whenever Jacob says "run Commander." Responsibilities: capture misfires and session-triggered skills, audit only skills that fired (session-scoped), update MEMORY.md with session learnings, log changes to CHANGELOG.md, and sync the repo to GitHub (push only after Jacob confirms). Claude Code only — requires filesystem access. Also runs the full end-of-session chain (roundtable → fuel-gauge → Commander audit → GitHub sync → jarvis) when Jacob says "wrap up", "wrap it up", "end session", or "close out". Do NOT trigger automatically on anything else.
 ---
 
-# Commander v8
+# Commander v11
 
 Session auditor and self-improvement loop. Explicit trigger only: "run Commander."
 
@@ -85,6 +85,8 @@ Presence check does NOT evaluate quality, conflicts, or stale references — tha
 ~/.claude/skills/critical/SKILL.md
 ~/.claude/skills/docx/SKILL.md
 ~/.claude/skills/fuel-gauge/SKILL.md
+~/.claude/skills/goal-designer/SKILL.md
+~/.claude/skills/graph-designer/SKILL.md
 ~/.claude/skills/handoff/SKILL.md
 ~/.claude/skills/handoff/chat-SKILL.md
 ~/.claude/skills/handoff/claude-code-SKILL.md
@@ -212,7 +214,7 @@ If there are uncommitted changes, flag them and ask Jacob whether to stage and c
 After all four steps, output a clean session summary:
 
 ```
-COMMANDER v8 — SESSION COMPLETE [DATE]
+COMMANDER v11 — SESSION COMPLETE [DATE]
 
 Skills triggered this session: N (deep audited)
 Skills presence-checked: N
@@ -239,7 +241,7 @@ When this trigger fires, run the following sequence in order. Complete each step
 
 2. **fuel-gauge** — run the fuel-gauge token audit. Produces a ranked cost table + efficiency recommendations as a section inside the Commander report.
 
-3. **Commander audit** — run the full Commander sequence: session scope capture → session-scoped skill audit → MEMORY.md update → backup.
+3. **Commander audit** — run the full Commander sequence: session scope capture → session-scoped skill audit → MEMORY.md update → repository status check.
 
 4. **GitHub sync** — skills and CLAUDE.md are symlinked into the repo, so no copying needed:
    1. Automatically log this session's changes (new skills, decisions, state changes) as a dated entry at the top of `~/Desktop/AI/claude-skills/CHANGELOG.md` — no approval needed. Touch CLAUDE.md only for a new durable directive; never add change history or skill lists there.
@@ -280,7 +282,7 @@ If Jacob says something like "that output was wrong, log it" at any point during
 
 - Never auto-rebuild a skill without Jacob's explicit approval
 - Never overwrite MEMORY.md — always append
-- Always back up before making any skill changes
+- Always archive the current SKILL.md to `archive/SKILL-v[N].md` before making any skill changes
 - Session end only — do not surface MEMORY.md at session start
 - Claude Code only — this skill requires filesystem access
 - Tier 1 deep audit only runs for skills Jacob confirms were triggered this session

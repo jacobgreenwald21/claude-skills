@@ -2,6 +2,14 @@
 
 Session-level change history for the skill ecosystem, newest first. Handoff and Commander append here instead of CLAUDE.md, which loads on every turn. The skill portfolio itself lives in README.md.
 
+## 2026-10-27
+
+- context/about-me.md rewritten as builder context only (working style, purpose of the skill system, cookbook as an output). Career and personal details removed — job search lives in regular Claude chats.
+- commander v11 (v10 archived): description now carries the end-of-session chain triggers ("wrap up", "wrap it up", "end session", "close out") so the chain can actually fire; stale v8 labels and "→ backup" removed; "back up" rule clarified as archive-before-edit; goal-designer and graph-designer added to the Tier 2 list.
+- roundtable (v3 archived): dropped 'wrap up the session' trigger and added an exclusion — "wrap up" now belongs to Commander's chain, which includes roundtable.
+- jarvis (v2 archived): Phase 1 now reads context/decision-log.md; added exclusion for task-level "what's next".
+- Open items #2 (stale career context) and #6 (AP Invoice Agent) resolved.
+
 ## 2026-10-21
 
 - Descriptions rewritten for code-debug (v4), code-review (v4), skill-builder (v6): each now states what the skill does, keeps all prior trigger phrases, adds a few, and names what not to use it for. code-review's proactive-offer guidance moved into the description (body text is invisible until a skill fires). skill-builder now also triggers on tuning existing skills. Previous versions archived as SKILL-v3 / SKILL-v3 / SKILL-v5.

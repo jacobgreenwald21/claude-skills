@@ -1,6 +1,6 @@
 ---
 name: jarvis
-description: "Use this skill when the user is stuck, out of ideas, or wants proactive suggestions for what to work on next. Trigger phrases include: 'jarvis', 'I'm stuck', 'what's next', 'what should I work on', 'jarvis what do you think', 'next move'. This is a manually triggered skill — do NOT auto-fire it. Do not trigger for general questions or tasks that already have a clear direction."
+description: "Use this skill when the user is stuck, out of ideas, or wants proactive suggestions for what to work on next. Trigger phrases include: 'jarvis', 'I'm stuck', 'what's next', 'what should I work on', 'jarvis what do you think', 'next move'. This is a manually triggered skill — do NOT auto-fire it. Do not trigger for general questions or tasks that already have a clear direction, or when 'what's next' asks for the next step of a specific in-progress task (e.g. 'what's next on the cookbook list')."
 ---
 
 # Jarvis Skill
@@ -12,7 +12,8 @@ Given the current session and memory context, surface 3 specific short-term idea
 Read the following in order:
 1. **Current session** — what has been built, decided, discussed, or attempted. Note anything in progress, anything explicitly rejected, and any open questions.
 2. **Memory files** — read `/Users/jacob/.claude/projects/-Users-jacob/memory/` for relevant project, feedback, and user memories. These are the primary external context source.
-3. **CLAUDE.md** — use only for high-level orientation (who Jacob is, what he's working toward). Do not let it override session-specific context.
+3. **Decision log** — read `~/Desktop/AI/claude-skills/context/decision-log.md` for how Jacob weighs options and any open decisions.
+4. **CLAUDE.md** — use only for high-level orientation (who Jacob is, what he's working toward). Do not let it override session-specific context.
 
 Identify:
 - What's currently in progress or recently completed
